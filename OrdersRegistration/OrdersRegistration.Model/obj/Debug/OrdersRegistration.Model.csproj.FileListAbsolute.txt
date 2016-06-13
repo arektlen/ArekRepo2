@@ -1,0 +1,4 @@
+C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo\OrdersRegistration\Voiceover.Model\bin\Debug\OrdersRegistration.Model.dll
+C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo\OrdersRegistration\Voiceover.Model\bin\Debug\OrdersRegistration.Model.pdb
+C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo\OrdersRegistration\Voiceover.Model\obj\Debug\OrdersRegistration.Model.dll
+C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo\OrdersRegistration\Voiceover.Model\obj\Debug\OrdersRegistration.Model.pdb
