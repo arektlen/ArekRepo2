@@ -13,9 +13,9 @@
                 <GradientStop Color="#FF414197" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Button x:Name="buttonOkAboutApplication" Content="Ok" HorizontalAlignment="Left" Margin="207,210,0,0" VerticalAlignment="Top" Width="75" Height="35" Click="buttonOkAboutApplication_Click"/>
+        <Button x:Name="buttonOkAboutApplication" Content="Ok" HorizontalAlignment="Left" Margin="195,210,0,0" VerticalAlignment="Top" Width="75" Height="35" Click="buttonOkAboutApplication_Click"/>
         <Label x:Name="labelAuthName" Content="Autor: ARKADIUSZ BEJGER" HorizontalAlignment="Left" Margin="35,84,0,0" VerticalAlignment="Top" Foreground="White"/>
-        <Label x:Name="labelAppName" Content="Aplikacja VOICEOVER" HorizontalAlignment="Left" Margin="35,40,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label x:Name="labelAppName" Content="Aplikacja: ORDERS REGISTRATION" HorizontalAlignment="Left" Margin="35,40,0,0" VerticalAlignment="Top" Foreground="White"/>
         <Label x:Name="labelAuthPhoneNumber" Content="tel.: 502 345 699" HorizontalAlignment="Left" Margin="35,191,0,0" VerticalAlignment="Top" Foreground="White"/>
         <Label x:Name="labelAuthMail" Content="arkadiusz.bejger@gmail.com" HorizontalAlignment="Left" Margin="35,160,0,0" VerticalAlignment="Top" Foreground="White"/>
 

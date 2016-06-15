@@ -26,3 +26,17 @@ C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo\OrdersRegistr
 C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo\OrdersRegistration\OrdersRegistration.DbRepository\obj\Debug\OrdersRegistration.DbRepository.csprojResolveAssemblyReference.cache
 C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo\OrdersRegistration\OrdersRegistration.DbRepository\obj\Debug\OrdersRegistration.DbRepository.dll
 C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo\OrdersRegistration\OrdersRegistration.DbRepository\obj\Debug\OrdersRegistration.DbRepository.pdb
+C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.DbRepository\bin\Debug\Database1.mdf
+C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.DbRepository\bin\Debug\Database1_log.ldf
+C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.DbRepository\bin\Debug\OrdersRegistration.DbRepository.dll.config
+C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.DbRepository\bin\Debug\OrdersRegistration.DbRepository.dll
+C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.DbRepository\bin\Debug\OrdersRegistration.DbRepository.pdb
+C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.DbRepository\bin\Debug\EntityFramework.dll
+C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.DbRepository\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.DbRepository\bin\Debug\OrdersRegistration.Model.dll
+C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.DbRepository\bin\Debug\OrdersRegistration.Model.pdb
+C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.DbRepository\bin\Debug\EntityFramework.xml
+C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.DbRepository\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.DbRepository\obj\Debug\OrdersRegistration.DbRepository.csprojResolveAssemblyReference.cache
+C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.DbRepository\obj\Debug\OrdersRegistration.DbRepository.dll
+C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.DbRepository\obj\Debug\OrdersRegistration.DbRepository.pdb

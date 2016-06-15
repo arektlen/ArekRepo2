@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using OrdersRegistration.DbRepository;
+using System.Collections.Generic;
 
 namespace OrdersRegistration.WPF
 {
@@ -16,23 +17,35 @@ namespace OrdersRegistration.WPF
         private IStorable<Model.Order> _orderStorage;
         private IStorable<Model.Customer> _customerStorage;
         private OrderListFilter orderListFilter = new OrderListFilter();
+        private List<Model.Order> _isPaidList = new List<Model.Order>();
         private int ordersCount;
         private DateTime dateFrom;
         private DateTime dateTo;
         private Model.Customer selectedCustomer = null;
+        private Model.Order order = new Model.Order();
 
         /// <summary>
         /// Ctor
         /// </summary>
         public MainWindow(IStorable<Model.Order> orderStorage, IStorable<Model.Customer> customerStorage)
         {
+            order.IsPaidEvent += Order_PropertyChanged;
+
             _orderStorage = orderStorage;
             _customerStorage = customerStorage;
             InitializeComponent();
             storageTest();   
             SetToComboBoxCustomerFilter();
             ComboBoxOrdersOnPage();
-            InitializeValues();
+            InitializeValues();          
+        }
+
+        private void Order_PropertyChanged(object sender, EventArgs e)
+        {
+            Model.Order _newOrder = (Model.Order)dataGrid.SelectedItem;
+            _isPaidList.Add(_newOrder);    
+
+            MessageBox.Show("Hurra!");
         }
 
         private void InitializeValues()
@@ -48,6 +61,14 @@ namespace OrdersRegistration.WPF
 
             comboBoxOrdersOnPage.SelectedValue = "---Wszystkie zlecenia---"; //wyzwala zdarzenie comboBoxOrdersOnPage_SelectionChanged
         }
+
+        //private static void Order_IsPaidChanged(object sender, EventArgs e)
+        //{
+        //    //Model.Order _newOrder = (Model.Order)dataGrid.SelectedItem;
+        //    //_isPaidList.Add(_newOrder);
+
+        //    MessageBox.Show("Hurra");
+        //}
 
         /// <summary>
         /// Dodanie testowych zleceniodawców
@@ -74,11 +95,21 @@ namespace OrdersRegistration.WPF
         {
             if (selectedCustomer == null)
             {
-                dataGrid.ItemsSource = orderListFilter.GetOrderListDateFromTo(dateFrom, dateTo, ordersCount);
+                var items = orderListFilter.GetOrderListDateFromTo(dateFrom, dateTo, ordersCount);
+                foreach (var i in items)
+                {
+                    i.IsPaidEvent += Order_PropertyChanged;
+                }
+                dataGrid.ItemsSource = items;
             }
             else
             {
-                dataGrid.ItemsSource = orderListFilter.GetOrderListDateFromTo(dateFrom, dateTo, ordersCount, selectedCustomer);
+                var items = orderListFilter.GetOrderListDateFromTo(dateFrom, dateTo, ordersCount, selectedCustomer);
+                foreach (var i in items)
+                {
+                    i.IsPaidEvent += Order_PropertyChanged;
+                }
+                dataGrid.ItemsSource = items;
             }
         }
 
@@ -87,14 +118,26 @@ namespace OrdersRegistration.WPF
         /// </summary>
         private void btnAddOrder_Click(object sender, RoutedEventArgs e)
         {
-            AddOrder addOrder = new AddOrder(_orderStorage, _customerStorage);
-
-            bool? result = addOrder.ShowDialog();
-            if (result.HasValue && result.Value)
+            if (_customerStorage.Read().Count() != 0)
             {
-                ComboBoxItemsCount(); //TODO: zrobić we wszystkich buttonach!
-                RefreshOrderList();
+                AddOrder addOrder = new AddOrder(_orderStorage, _customerStorage);
+
+                bool? result = addOrder.ShowDialog();
+                if (result.HasValue && result.Value)
+                {
+                    ComboBoxItemsCount();
+                    RefreshOrderList();
+                }
             }
+            else
+            {
+                MessageBoxResult result = MessageBox.Show("Ponieważ nie ma jeszcze zdefiniowanego żadnego ZLECENIODAWCY, dodaj go teraz !", "Uwaga", MessageBoxButton.OK);
+
+                if (result == MessageBoxResult.OK)
+                {
+                    MenuItemAddCustomer_Click(this, e);
+                }           
+            }           
         }
 
         /// <summary>
@@ -150,6 +193,11 @@ namespace OrdersRegistration.WPF
         {
             AddCustomer addCustomer = new AddCustomer(_customerStorage);
             addCustomer.ShowDialog();
+
+            foreach (var i in _customerStorage.Read())
+            {
+                comboBoxCustomerFilter.Items.Add(i);
+            }
         }
 
         /// <summary>
@@ -167,7 +215,7 @@ namespace OrdersRegistration.WPF
         }
 
         /// <summary>
-        /// O autorach (Menu)
+        /// O autorze (Menu)
         /// </summary>
         private void MenuItemAbout_Click(object sender, RoutedEventArgs e)
         {
@@ -181,60 +229,6 @@ namespace OrdersRegistration.WPF
         private void MenuItemAppClose_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
-        }
-
-        /// <summary>
-        /// Metody odpowiedzialne za "pojedynczy click" w dataGrid
-        /// </summary>
-        private void DataGridCell_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            DataGridCell cell = (DataGridCell)sender;
-            if (cell != null && !cell.IsEditing && !cell.IsReadOnly)
-            {
-                if (!cell.IsFocused)
-                {
-                    cell.Focus();
-                }
-                if (dataGrid.SelectionUnit != DataGridSelectionUnit.FullRow)
-                {
-                    if (!cell.IsSelected)
-                    {
-                        cell.IsSelected = true;
-                    }
-                }
-                else
-                {
-                    DataGridRow row = FindVisualParent<DataGridRow>(cell);
-                    if (row != null && !row.IsSelected)
-                    {
-                        row.IsSelected = true;
-                    }
-                }
-
-            }
-        }
-        static T FindVisualParent<T>(UIElement element) where T : UIElement
-        {
-            UIElement parent = element;
-            while (parent != null)
-            {
-                T correctlyTyped = parent as T;
-                if (correctlyTyped != null)
-                {
-                    return correctlyTyped;
-                }
-                parent = VisualTreeHelper.GetParent(parent) as UIElement;
-            }
-            return null;
-        }
-
-        /// <summary>
-        /// Poprawić !!!
-        /// </summary>
-        private void dataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
-        {
-            Model.Order _newOrder = (Model.Order)dataGrid.SelectedItem;
-            _orderStorage.Update(_newOrder);
         }
 
         /// <summary>
@@ -347,6 +341,19 @@ namespace OrdersRegistration.WPF
         {
             dateTo = datePickerTo.SelectedDate.Value;
             RefreshOrderList();
+        }
+
+        /// <summary>
+        /// Akceptuj zapłacone zlecenia (Button)
+        /// </summary>
+        private void buttonIsPaid_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var i in _isPaidList)
+            {
+                _orderStorage.Update(i);
+            }
+
+            _isPaidList.Clear();
         }
     }
 }

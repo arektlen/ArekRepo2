@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OrdersRegistration.WPF"
         mc:Ignorable="d"
-        Title="Edytuj dane zleceniodawcy" Height="300" Width="300">
+        Title="Edytuj dane zleceniodawcy" Height="300" Width="300" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">

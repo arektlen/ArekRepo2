@@ -49,7 +49,7 @@ namespace OrdersRegistration.Statistics
         {
             using (Database1Entities context = new Database1Entities())
             {
-                return context.Orders.Where(o => o.IsPaid == false).Sum(o => o.Price);
+                return context.Orders.Where(o => o.IsPaid == false).Sum(o => (decimal?)o.Price) ?? 0;
             }
         }
 
@@ -93,7 +93,7 @@ namespace OrdersRegistration.Statistics
         {
             using (Database1Entities context = new Database1Entities())
             {
-                return context.Orders.Where(o => o.Date <= today && o.Date >= firstDayOfMonth && o.IsPaid == false).Sum(o => o.Price);
+                return context.Orders.Where(o => o.Date <= today && o.Date >= firstDayOfMonth && o.IsPaid == false).Sum(o => (decimal?)o.Price) ?? 0;
             }
         }
     }

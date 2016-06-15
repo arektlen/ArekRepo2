@@ -4,9 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OrdersRegistration.WPF"
-        xmlns:Model="clr-namespace:OrdersRegistration.Model;assembly=Voiceover.Model" x:Class="OrdersRegistration.WPF.MainWindow"
+        xmlns:Model="clr-namespace:OrdersRegistration.Model;assembly=OrdersRegistration.Model" x:Class="OrdersRegistration.WPF.MainWindow"
         mc:Ignorable="d"
-        Title="VoiceOver" Height="521.5" Width="921.5" WindowStyle="ThreeDBorderWindow" ResizeMode="NoResize">
+        Title="OrdersRegistration" Height="521.5" Width="921.5" WindowStyle="ThreeDBorderWindow" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid Margin="0">
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -15,7 +15,7 @@
             </LinearGradientBrush>
         </Grid.Background>
         <Button x:Name="btnZlecenie" Content="Dodaj zlecenie" Margin="0,0,15,34" Click="btnAddOrder_Click" Height="38" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="130" FontSize="14" FontFamily="Segoe UI Black"/>
-        <DataGrid ItemsSource="{Binding Orders}" CanUserAddRows="false" x:Name="dataGrid" Margin="10,47,206,47" AutoGenerateColumns="False" CellEditEnding="dataGrid_CellEditEnding">
+        <DataGrid ItemsSource="{Binding Orders}" CanUserAddRows="false" x:Name="dataGrid" Margin="10,47,206,73" AutoGenerateColumns="False">
             <DataGrid.RowStyle>
                 <Style TargetType="DataGridRow">
                     <Style.Triggers>
@@ -37,32 +37,26 @@
                 <DataGridCheckBoxColumn Header="Zapłacono"  Binding="{Binding IsPaid, UpdateSourceTrigger=PropertyChanged}"/>
                 <DataGridTextColumn Header="Uwagi"  Binding="{Binding Comments}" IsReadOnly="True"/>
             </DataGrid.Columns>
-            <DataGrid.Resources>
-                <Style TargetType="{x:Type DataGridCell}">
-                    <EventSetter
-                Event="PreviewMouseLeftButtonDown"
-                Handler="DataGridCell_PreviewMouseLeftButtonDown"/>
-                </Style>
-            </DataGrid.Resources>
         </DataGrid>
         <StackPanel>
-        <Menu Height="23" Name="menu" Margin="0,0,0,0">
-            <MenuItem Header="MENU" Width="51" Height="23">
-                <MenuItem Header="Dodaj zlecenie" Click="btnAddOrder_Click"/>
-                <MenuItem Header="Edytuj zlecenie" Click="MenuItem_EditOrder"/>
-                <MenuItem Header="Usuń zlecenie" Click="MenuItem_DeleteOrder"/>
-                <Separator/>
-                <MenuItem Header="Dodaj zleceniodawcę" Click="MenuItemAddCustomer_Click"/>
-                <MenuItem Header="Edytuj/Usuń zleceniodawcę" Click="MenuItem_EditCustomer"/>
-                <Separator/>
-                <MenuItem Header="O autorze" Click="MenuItemAbout_Click"/>
-                <MenuItem Header="Zamknij" Click="MenuItemAppClose_Click" InputGestureText="Alt + F4"/>
-            </MenuItem>
-            <MenuItem Header="STATYSTYKI" RenderTransformOrigin="0.526,1.111" Height="23">
-                <MenuItem Header="Podstawowe" Click="MenuSimpleStatistics_Click"/>
-            </MenuItem>
-        </Menu>
+            <Menu Height="23" Name="menu" Margin="0,0,0,0">
+                <MenuItem Header="MENU" Width="51" Height="23">
+                    <MenuItem Header="Dodaj zlecenie" Click="btnAddOrder_Click"/>
+                    <MenuItem Header="Edytuj zlecenie" Click="MenuItem_EditOrder"/>
+                    <MenuItem Header="Usuń zlecenie" Click="MenuItem_DeleteOrder"/>
+                    <Separator/>
+                    <MenuItem Header="Dodaj zleceniodawcę" Click="MenuItemAddCustomer_Click"/>
+                    <MenuItem Header="Edytuj/Usuń zleceniodawcę" Click="MenuItem_EditCustomer"/>
+                    <Separator/>
+                    <MenuItem Header="O autorze" Click="MenuItemAbout_Click"/>
+                    <MenuItem Header="Zamknij" Click="MenuItemAppClose_Click" InputGestureText="Alt + F4"/>
+                </MenuItem>
+                <MenuItem Header="STATYSTYKI" RenderTransformOrigin="0.526,1.111" Height="23">
+                    <MenuItem Header="Podstawowe" Click="MenuSimpleStatistics_Click"/>
+                </MenuItem>
+            </Menu>
         </StackPanel>
+        <Button x:Name="buttonIsPaid" Content="Akceptuj zapłacone" Margin="771,351,15,0" Height="29" VerticalAlignment="Top" Click="buttonIsPaid_Click"/>
         <ComboBox x:Name="comboBoxCustomerFilter" ItemsSource="{Binding Customer}" DisplayMemberPath="Name" IsEditable="True" IsReadOnly="True" Text="Wybierz wg zleceniodawcy" Margin="722,47,15,0" SelectionChanged="comboBoxCustomerFilter_SelectionChanged" Height="22" VerticalAlignment="Top"/>
         <ComboBox x:Name="comboBoxOrdersOnPage" Margin="722,116,15,0" IsEditable="True" IsReadOnly="True" Text="Liczba zdarzeń na stronie" SelectionChanged="comboBoxOrdersOnPage_SelectionChanged" Height="22" VerticalAlignment="Top"/>
         <DatePicker x:Name="datePickerFrom" Margin="780,201,15,0" Height="24" VerticalAlignment="Top" SelectedDateChanged="datePickerFrom_SelectedDateChanged"/>
