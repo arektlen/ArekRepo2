@@ -357,5 +357,50 @@ namespace OrdersRegistration.WPF
             _isPaidList.Clear();
             buttonIsPaid.IsEnabled = false;
         }
+
+        /// <summary>
+        /// Metody odpowiedzialne za "pojedynczy click" w dataGrid
+        /// </summary>
+        private void DataGridCell_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DataGridCell cell = (DataGridCell)sender;
+            if (cell != null && !cell.IsEditing && !cell.IsReadOnly)
+            {
+                if (!cell.IsFocused)
+                {
+                    cell.Focus();
+                }
+                if (dataGrid.SelectionUnit != DataGridSelectionUnit.FullRow)
+                {
+                    if (!cell.IsSelected)
+                    {
+                        cell.IsSelected = true;
+                    }
+                }
+                else
+                {
+                    DataGridRow row = FindVisualParent<DataGridRow>(cell);
+                    if (row != null && !row.IsSelected)
+                    {
+                        row.IsSelected = true;
+                    }
+                }
+
+            }
+        }
+        static T FindVisualParent<T>(UIElement element) where T : UIElement
+        {
+            UIElement parent = element;
+            while (parent != null)
+            {
+                T correctlyTyped = parent as T;
+                if (correctlyTyped != null)
+                {
+                    return correctlyTyped;
+                }
+                parent = VisualTreeHelper.GetParent(parent) as UIElement;
+            }
+            return null;
+        }
     }
 }
