@@ -7,7 +7,7 @@ namespace OrdersRegistration.WPF
     /// <summary>
     /// Interaction logic for EditOrder.xaml
     /// </summary>
-    public partial class EditOrder : Window
+    public partial class EditOrder
     {
         private Model.Order _newOrder = new Model.Order();
         private IStorable<Model.Order> _orderStorage;

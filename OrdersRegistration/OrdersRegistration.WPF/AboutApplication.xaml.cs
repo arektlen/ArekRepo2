@@ -5,7 +5,7 @@ namespace OrdersRegistration.WPF
     /// <summary>
     /// Interaction logic for AboutApplication.xaml
     /// </summary>
-    public partial class AboutApplication : Window
+    public partial class AboutApplication
     {
         public AboutApplication()
         {

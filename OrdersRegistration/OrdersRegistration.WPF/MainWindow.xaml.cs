@@ -12,7 +12,7 @@ namespace OrdersRegistration.WPF
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         private IStorable<Model.Order> _orderStorage;
         private IStorable<Model.Customer> _customerStorage;
@@ -22,15 +22,13 @@ namespace OrdersRegistration.WPF
         private DateTime dateFrom;
         private DateTime dateTo;
         private Model.Customer selectedCustomer = null;
-        private Model.Order order = new Model.Order();
+        private Model.Order orderIsPaid = new Model.Order();
 
         /// <summary>
         /// Ctor
         /// </summary>
         public MainWindow(IStorable<Model.Order> orderStorage, IStorable<Model.Customer> customerStorage)
         {
-            order.IsPaidEvent += Order_PropertyChanged;
-
             _orderStorage = orderStorage;
             _customerStorage = customerStorage;
             InitializeComponent();
@@ -43,9 +41,20 @@ namespace OrdersRegistration.WPF
         private void Order_PropertyChanged(object sender, EventArgs e)
         {
             Model.Order _newOrder = (Model.Order)dataGrid.SelectedItem;
-            _isPaidList.Add(_newOrder);    
 
-            MessageBox.Show("Hurra!");
+            if (!_isPaidList.Contains(_newOrder))
+            {
+                _isPaidList.Add(_newOrder);
+                buttonIsPaid.IsEnabled = true;
+            }
+            else
+            {
+                _isPaidList.Remove(_newOrder);
+                if (_isPaidList.Count == 0)
+                {
+                    buttonIsPaid.IsEnabled = false;
+                }
+            }
         }
 
         private void InitializeValues()
@@ -62,25 +71,17 @@ namespace OrdersRegistration.WPF
             comboBoxOrdersOnPage.SelectedValue = "---Wszystkie zlecenia---"; //wyzwala zdarzenie comboBoxOrdersOnPage_SelectionChanged
         }
 
-        //private static void Order_IsPaidChanged(object sender, EventArgs e)
-        //{
-        //    //Model.Order _newOrder = (Model.Order)dataGrid.SelectedItem;
-        //    //_isPaidList.Add(_newOrder);
-
-        //    MessageBox.Show("Hurra");
-        //}
-
         /// <summary>
         /// Dodanie testowych zleceniodawców
         /// </summary>
         public void storageTest()
         {
-            //Model.Customer customer1 = new Model.Customer { ID = 1, Name = "Arek" };
-            //_customerStorage.Create(customer1);
-            //Model.Customer customer2 = new Model.Customer { ID = 2, Name = "Piotrek" };
-            //_customerStorage.Create(customer2);
-            //Model.Customer customer3 = new Model.Customer { ID = 3, Name = "Zenek" };
-            //_customerStorage.Create(customer3);
+            Model.Customer customer1 = new Model.Customer { ID = 1, Name = "Arek" };
+            _customerStorage.Create(customer1);
+            Model.Customer customer2 = new Model.Customer { ID = 2, Name = "Piotrek" };
+            _customerStorage.Create(customer2);
+            Model.Customer customer3 = new Model.Customer { ID = 3, Name = "Zenek" };
+            _customerStorage.Create(customer3);
 
             //Model.Order order1 = new Model.Order { ID = 1, Name = "bubu", Comments = "tralala", Price = 143, IsPaid = true, Customer = customer1, Date = DateTime.Now };
             //_orderStorage.Create(order1);
@@ -354,6 +355,7 @@ namespace OrdersRegistration.WPF
             }
 
             _isPaidList.Clear();
+            buttonIsPaid.IsEnabled = false;
         }
     }
 }

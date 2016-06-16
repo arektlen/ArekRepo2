@@ -6,7 +6,7 @@ namespace OrdersRegistration.WPF
     /// <summary>
     /// Interaction logic for SimpleStatistics.xaml
     /// </summary>
-    public partial class SimpleStatistics : Window
+    public partial class SimpleStatistics
     {
         Statistic1 statistic1 = new Statistic1();
 

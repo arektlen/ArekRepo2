@@ -8,7 +8,7 @@ namespace OrdersRegistration.WPF
     /// <summary>
     /// Interaction logic for AddOrder.xaml
     /// </summary>
-    public partial class AddOrder : Window
+    public partial class AddOrder
     {
         private IStorable<Model.Order> _orderStorage;
         private IStorable<Model.Customer> _customerStorage;

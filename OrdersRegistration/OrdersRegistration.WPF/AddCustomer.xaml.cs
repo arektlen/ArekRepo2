@@ -6,7 +6,7 @@ namespace OrdersRegistration.WPF
     /// <summary>
     /// Interaction logic for AddCustomer.xaml
     /// </summary>
-    public partial class AddCustomer : Window
+    public partial class AddCustomer
     {
         private IStorable<Model.Customer> _customerStorage;
         private Model.Customer newCustomer = new Model.Customer();

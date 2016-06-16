@@ -8,7 +8,7 @@ namespace OrdersRegistration.WPF
     /// <summary>
     /// Interaction logic for EditCustomer.xaml
     /// </summary>
-    public partial class EditCustomer : Window
+    public partial class EditCustomer
     {
         private IStorable<Model.Customer> _customerStorage;
         private Model.Customer _customerToEdit = null;

@@ -1,18 +1,13 @@
-﻿<Window x:Class="OrdersRegistration.WPF.EditOrder"
+﻿<extra:Window x:Class="OrdersRegistration.WPF.EditOrder"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:extra="http://schemas.extra.com/ui"
         xmlns:local="clr-namespace:OrdersRegistration.WPF"
         mc:Ignorable="d"
-        Title="Edytuj zlecenie" Height="300" Width="300" WindowStartupLocation="CenterScreen">
+        Title="Edytuj zlecenie" Height="400" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                <GradientStop Color="Black"/>
-                <GradientStop Color="#FF414197" Offset="1"/>
-            </LinearGradientBrush>
-        </Grid.Background>
         <ComboBox ItemsSource="{Binding Path=Customers}" DisplayMemberPath="Name" x:Name="comboBoxSelectCustomer" HorizontalAlignment="Left" Margin="42,34,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="comboBoxSelectCustomer_SelectionChanged"/>
         <TextBox x:Name="textBoxEditOrdername" HorizontalAlignment="Left" Height="23" Margin="42,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="tbEditOrdername_TextChanged"/>
         <TextBox x:Name="textBoxEditComments" HorizontalAlignment="Left" Height="23" Margin="42,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="tbEditComments_TextChanged"/>
@@ -26,4 +21,4 @@
         <Label x:Name="labelDate" Content="Data zlecenia" HorizontalAlignment="Left" Margin="42,204,0,0" VerticalAlignment="Top" Width="135" Foreground="White"/>
         <CheckBox x:Name="checkBoxIsPaid" Content="Czy zapłacono?" HorizontalAlignment="Left" Margin="176,136,0,0" VerticalAlignment="Top" Click="checkBoxIsPaid_Click" Foreground="White"/>
     </Grid>
-</Window>
+</extra:Window>
