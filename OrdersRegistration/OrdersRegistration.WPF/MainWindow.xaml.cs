@@ -6,13 +6,14 @@ using System.Windows.Input;
 using System.Windows.Media;
 using OrdersRegistration.DbRepository;
 using System.Collections.Generic;
+using MahApps.Metro.Controls;
 
 namespace OrdersRegistration.WPF
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow
+    public partial class MainWindow : MetroWindow
     {
         private IStorable<Model.Order> _orderStorage;
         private IStorable<Model.Customer> _customerStorage;

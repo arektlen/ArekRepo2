@@ -1,11 +1,12 @@
 ﻿using System.Windows;
+using MahApps.Metro.Controls;
 
 namespace OrdersRegistration.WPF
 {
     /// <summary>
     /// Interaction logic for AboutApplication.xaml
     /// </summary>
-    public partial class AboutApplication
+    public partial class AboutApplication : MetroWindow
     {
         public AboutApplication()
         {

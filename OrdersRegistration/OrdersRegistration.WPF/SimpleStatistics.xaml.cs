@@ -1,12 +1,13 @@
 ﻿using System.Windows;
 using OrdersRegistration.Statistics;
+using MahApps.Metro.Controls;
 
 namespace OrdersRegistration.WPF
 {
     /// <summary>
     /// Interaction logic for SimpleStatistics.xaml
     /// </summary>
-    public partial class SimpleStatistics
+    public partial class SimpleStatistics : MetroWindow
     {
         Statistic1 statistic1 = new Statistic1();
 

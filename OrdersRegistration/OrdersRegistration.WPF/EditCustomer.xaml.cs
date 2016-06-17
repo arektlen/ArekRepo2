@@ -2,13 +2,14 @@
 using System.Windows;
 using System.Windows.Controls;
 using OrdersRegistration.DbRepository;
+using MahApps.Metro.Controls;
 
 namespace OrdersRegistration.WPF
 {
     /// <summary>
     /// Interaction logic for EditCustomer.xaml
     /// </summary>
-    public partial class EditCustomer
+    public partial class EditCustomer : MetroWindow
     {
         private IStorable<Model.Customer> _customerStorage;
         private Model.Customer _customerToEdit = null;

@@ -2,13 +2,14 @@
 using System.Windows;
 using System.Windows.Controls;
 using OrdersRegistration.DbRepository;
+using MahApps.Metro.Controls;
 
 namespace OrdersRegistration.WPF
 {
     /// <summary>
     /// Interaction logic for AddOrder.xaml
     /// </summary>
-    public partial class AddOrder
+    public partial class AddOrder : MetroWindow
     {
         private IStorable<Model.Order> _orderStorage;
         private IStorable<Model.Customer> _customerStorage;

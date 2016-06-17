@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using OrdersRegistration.DbRepository;
+using MahApps.Metro.Controls;
 
 namespace OrdersRegistration.WPF
 {
