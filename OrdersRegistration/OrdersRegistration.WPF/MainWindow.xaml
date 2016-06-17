@@ -7,14 +7,13 @@
         xmlns:local="clr-namespace:OrdersRegistration.WPF"
         xmlns:Model="clr-namespace:OrdersRegistration.Model;assembly=OrdersRegistration.Model" x:Class="OrdersRegistration.WPF.MainWindow"
         mc:Ignorable="d"
-        Title="OrdersRegistration" Height="521.5" Width="921.5" ResizeMode="CanResize" WindowStartupLocation="CenterScreen">
+        Title="OrdersRegistration" Height="521.5" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" Width="921.5" ResizeMode="CanResize" WindowStartupLocation="CenterScreen">
     <Grid Margin="0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="415*"/>
-            <ColumnDefinition Width="499*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="btnZlecenie" Content="Dodaj zlecenie" Margin="0,0,15,34" Click="btnAddOrder_Click" Height="45" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="135" FontSize="14" FontFamily="Segoe UI Black" Grid.Column="1"/>
-        <DataGrid ItemsSource="{Binding Orders}" CanUserAddRows="false" x:Name="dataGrid" Margin="10,57,206,73" AutoGenerateColumns="False" Grid.ColumnSpan="2">
+        <Button x:Name="btnZlecenie" Content="Dodaj zlecenie" Margin="0,0,15,34" Click="btnAddOrder_Click" Height="45" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="135" FontSize="14" FontFamily="Segoe UI Black" BorderBrush="OrangeRed" BorderThickness="3"/>
+        <DataGrid ItemsSource="{Binding Orders}" CanUserAddRows="false" x:Name="dataGrid" Margin="10,57,206,73" AutoGenerateColumns="False">
             <DataGrid.Resources>
                 <Style TargetType="{x:Type DataGridCell}">
                     <EventSetter
@@ -22,7 +21,6 @@
                     Handler="DataGridCell_PreviewMouseLeftButtonDown"/>
                 </Style>
             </DataGrid.Resources>
-
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nr"  Binding="{Binding ID}" IsReadOnly="True" TextElement.FontSize="12"/>
                 <DataGridTextColumn Header="Data"  Binding="{Binding Date, StringFormat={}{0:dd.MM.yyyy}}" IsReadOnly="True"/>
@@ -33,26 +31,26 @@
                 <DataGridTextColumn Header="Uwagi"  Binding="{Binding Comments}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Menu Name="menu" Margin="0,0,0,0">
-            <MenuItem Header="MENU" VerticalContentAlignment="Center" Background="#1BA1E2">
-                <MenuItem Header="Dodaj zlecenie" Click="btnAddOrder_Click" Background="WhiteSmoke" BorderBrush="DodgerBlue" BorderThickness="2,2,2,0"/>
-                <MenuItem Header="Edytuj zlecenie" Click="MenuItem_EditOrder" Background="#FF171717" BorderBrush="DodgerBlue" BorderThickness="2,0,2,0"/>
-                <MenuItem Header="Usuń zlecenie" Click="MenuItem_DeleteOrder" Background="#FF171717" BorderBrush="DodgerBlue" BorderThickness="2,0,2,1"/>
-                
-                <MenuItem Header="Dodaj zleceniodawcę" Click="MenuItemAddCustomer_Click" Background="#FF171717" BorderBrush="DodgerBlue" BorderThickness="2,0,2,0"/>
-                <MenuItem Header="Edytuj/Usuń zleceniodawcę" Click="MenuItem_EditCustomer" Background="#FF171717" BorderBrush="DodgerBlue" BorderThickness="2,0,2,1"/>
-
-                <MenuItem Header="O autorze" Click="MenuItemAbout_Click" Background="#FF171717" BorderBrush="DodgerBlue" BorderThickness="2,0,2,0"/>
-                <MenuItem Header="Zamknij" Click="MenuItemAppClose_Click" InputGestureText="Alt + F4" Background="#FF171717" BorderBrush="DodgerBlue" BorderThickness="2,0,2,2"/>
+        <Menu Name="menu" Margin="0,0,0,0" HorizontalAlignment="Left" Width="145" Height="30" VerticalAlignment="Top" BorderBrush="OrangeRed">
+            <MenuItem Header="MENU" VerticalContentAlignment="Center" BorderBrush="OrangeRed" BorderThickness="2">
+                <MenuItem Header="Dodaj zlecenie" Click="btnAddOrder_Click"/>
+                <MenuItem Header="Edytuj zlecenie" Click="MenuItem_EditOrder"/>
+                <MenuItem Header="Usuń zlecenie" Click="MenuItem_DeleteOrder"/>
+                <Separator/>
+                <MenuItem Header="Dodaj zleceniodawcę" Click="MenuItemAddCustomer_Click"/>
+                <MenuItem Header="Edytuj/Usuń zleceniodawcę" Click="MenuItem_EditCustomer"/>
+                <Separator/>
+                <MenuItem Header="O autorze" Click="MenuItemAbout_Click"/>
+                <MenuItem Header="Zamknij" Click="MenuItemAppClose_Click" InputGestureText="Alt + F4"/>
             </MenuItem>
-            <MenuItem Header="STATYSTYKI" VerticalContentAlignment="Center" Background="#1BA1E2">
-                <MenuItem Header="Podstawowe" Click="MenuSimpleStatistics_Click" Background="#FF171717" BorderBrush="DodgerBlue" BorderThickness="2,2,2,2"/>
+            <MenuItem Header="STATYSTYKI" VerticalContentAlignment="Center" BorderBrush="OrangeRed" BorderThickness="2">
+                <MenuItem Header="Podstawowe" Click="MenuSimpleStatistics_Click"/>
             </MenuItem>
         </Menu>
-        <Button x:Name="buttonIsPaid" Content="Akceptuj zapłacone" VerticalContentAlignment="Center" IsEnabled="False" Margin="0,0,15,111" Click="buttonIsPaid_Click" Height="35" Width="140" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Column="1"/>
-        <ComboBox x:Name="comboBoxCustomerFilter" ItemsSource="{Binding Customer}" DisplayMemberPath="Name" IsEditable="True" IsReadOnly="True" Text="Wybierz wg zleceniodawcy" Margin="0,0,15,422" SelectionChanged="comboBoxCustomerFilter_SelectionChanged" Height="22" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="177" Grid.Column="1"/>
-        <ComboBox x:Name="comboBoxOrdersOnPage" Margin="0,0,15,353" IsEditable="True" IsReadOnly="True" Text="Liczba zdarzeń na stronie" SelectionChanged="comboBoxOrdersOnPage_SelectionChanged" Height="22" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="177" Grid.Column="1"/>
-        <DatePicker x:Name="datePickerFrom" Margin="0,0,15,266" Height="24" VerticalAlignment="Bottom" SelectedDateChanged="datePickerFrom_SelectedDateChanged" HorizontalAlignment="Right" Width="119" Grid.Column="1"/>
-        <DatePicker x:Name="datePickerTo" Margin="0,0,15,227" SelectedDateChanged="datePickerTo_SelectedDateChanged" Height="24" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="119" Grid.Column="1"/>
+        <Button x:Name="buttonIsPaid" Content="Akceptuj zapłacone" VerticalContentAlignment="Center" IsEnabled="False" Margin="0,0,15,111" Click="buttonIsPaid_Click" Height="35" Width="140" VerticalAlignment="Bottom" HorizontalAlignment="Right" BorderBrush="OrangeRed" BorderThickness="1"/>
+        <ComboBox x:Name="comboBoxCustomerFilter" ItemsSource="{Binding Customer}" Text="Wybierz zleceniodawcę" DisplayMemberPath="Name" IsEditable="True" IsReadOnly="True" VerticalContentAlignment="Center" Margin="0,0,15,422" SelectionChanged="comboBoxCustomerFilter_SelectionChanged" Height="22" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="177" BorderBrush="OrangeRed" BorderThickness="1"/>
+        <ComboBox x:Name="comboBoxOrdersOnPage" Text="Liczba zleceń" Margin="0,0,15,353" IsEditable="True" IsReadOnly="True" VerticalContentAlignment="Center" SelectionChanged="comboBoxOrdersOnPage_SelectionChanged" Height="22" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="177" BorderBrush="OrangeRed" BorderThickness="1"/>
+        <DatePicker x:Name="datePickerFrom" Margin="0,0,15,266" Height="24" VerticalAlignment="Bottom" SelectedDateChanged="datePickerFrom_SelectedDateChanged" HorizontalAlignment="Right" Width="119" BorderBrush="OrangeRed" BorderThickness="1"/>
+        <DatePicker x:Name="datePickerTo" Margin="0,0,15,227" SelectedDateChanged="datePickerTo_SelectedDateChanged" Height="24" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="119" BorderBrush="OrangeRed" BorderThickness="1"/>
     </Grid>
 </Controls:MetroWindow>

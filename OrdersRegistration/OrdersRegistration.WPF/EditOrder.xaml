@@ -6,19 +6,20 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:OrdersRegistration.WPF"
         mc:Ignorable="d"
-        Title="Edytuj zlecenie" Height="400" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Edytuj zlecenie" Height="400" Width="400" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
-        <ComboBox ItemsSource="{Binding Path=Customers}" DisplayMemberPath="Name" x:Name="comboBoxSelectCustomer" HorizontalAlignment="Left" Margin="42,34,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="comboBoxSelectCustomer_SelectionChanged"/>
-        <TextBox x:Name="textBoxEditOrdername" HorizontalAlignment="Left" Height="23" Margin="42,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="tbEditOrdername_TextChanged"/>
-        <TextBox x:Name="textBoxEditComments" HorizontalAlignment="Left" Height="23" Margin="42,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="tbEditComments_TextChanged"/>
-        <TextBox x:Name="textBoxEditOrderPrice" HorizontalAlignment="Left" Height="23" Margin="42,131,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="tbEditOrderPrice_TextChanged"/>
-        <DatePicker x:Name="dateEditOrderPicker" HorizontalAlignment="Left" Margin="42,230,0,0" VerticalAlignment="Top" DisplayDate="2016-05-23" SelectedDateChanged="dateEditOrderPicker_SelectedDateChanged"/>
-        <Button x:Name="btnEditAddOrder" Content="Edytuj" HorizontalAlignment="Left" Margin="207,222,0,0" VerticalAlignment="Top" Width="75" Click="btnEditAddOrder_Click" Height="37"/>
-        <Label x:Name="labelSelectCustomer" Content="Wybierz zleceniodawcę" HorizontalAlignment="Left" Margin="42,8,0,0" VerticalAlignment="Top" Width="135" Foreground="White"/>
-        <Label x:Name="labelOrderName" Content="Nazwa zlecenia" HorizontalAlignment="Left" Margin="42,61,0,0" VerticalAlignment="Top" Width="135" Foreground="White"/>
-        <Label x:Name="labelPrice" Content="Kwota" HorizontalAlignment="Left" Margin="42,105,0,0" VerticalAlignment="Top" Width="135" Foreground="White"/>
-        <Label x:Name="labelComments" Content="Komentarz" HorizontalAlignment="Left" Margin="42,154,0,0" VerticalAlignment="Top" Width="135" Foreground="White"/>
-        <Label x:Name="labelDate" Content="Data zlecenia" HorizontalAlignment="Left" Margin="42,204,0,0" VerticalAlignment="Top" Width="135" Foreground="White"/>
-        <CheckBox x:Name="checkBoxIsPaid" Content="Czy zapłacono?" HorizontalAlignment="Left" Margin="176,136,0,0" VerticalAlignment="Top" Click="checkBoxIsPaid_Click" Foreground="White"/>
+        <ComboBox ItemsSource="{Binding Path=Customers}" DisplayMemberPath="Name" x:Name="comboBoxSelectCustomer" Margin="50,0,0,288" SelectionChanged="comboBoxSelectCustomer_SelectionChanged" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="275" Height="23"/>
+        <TextBox x:Name="textBoxEditOrdername" Margin="50,0,0,229" TextWrapping="Wrap" TextChanged="tbEditOrdername_TextChanged" HorizontalAlignment="Left" Width="275" Height="23" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="textBoxEditComments" Margin="50,0,0,111" TextWrapping="Wrap" TextChanged="tbEditComments_TextChanged" HorizontalAlignment="Left" Width="275" Height="23" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="textBoxEditOrderPrice" Margin="50,173,0,170" TextWrapping="Wrap" TextChanged="tbEditOrderPrice_TextChanged" HorizontalAlignment="Left" Width="80" Height="23"/>
+        <DatePicker x:Name="dateEditOrderPicker" Margin="50,0,0,51" SelectedDateChanged="dateEditOrderPicker_SelectedDateChanged" Height="24" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="113"/>
+        <Label x:Name="labelSelectCustomer" Content="Wybierz zleceniodawcę" HorizontalContentAlignment="Left" Margin="60,0,0,315" Foreground="White" Height="26" VerticalAlignment="Bottom" Width="136" HorizontalAlignment="Left"/>
+        <Label x:Name="labelOrderName" Content="Nazwa zlecenia" HorizontalContentAlignment="Left" Margin="60,0,0,257" VerticalAlignment="Bottom" Width="136" Foreground="White" Height="26" HorizontalAlignment="Left"/>
+        <Label x:Name="labelPrice" Content="Kwota" HorizontalContentAlignment="Left" Margin="60,0,0,198" VerticalAlignment="Bottom" Width="136" Foreground="White" Height="26" HorizontalAlignment="Left"/>
+        <Label x:Name="labelComments" Content="Komentarz" HorizontalContentAlignment="Left" Margin="60,0,0,139" VerticalAlignment="Bottom" Width="136" Foreground="White" Height="26" HorizontalAlignment="Left"/>
+        <Label x:Name="labelDate" Content="Data zlecenia" HorizontalContentAlignment="Left" Margin="60,0,0,80" VerticalAlignment="Bottom" Width="136" Foreground="White" Height="26" HorizontalAlignment="Left"/>
+        <Button x:Name="btnEditAddOrder" Content="Edytuj zlecenie" Margin="0,0,39,35" Click="btnEditAddOrder_Click" HorizontalAlignment="Right" Width="120" Height="40" VerticalAlignment="Bottom" BorderBrush="OrangeRed" BorderThickness="2"/>
+        <Label x:Name="labelPLN" Content="PLN" HorizontalAlignment="Left" Margin="130,173,0,0" VerticalAlignment="Top" Height="23"/>
+        <CheckBox x:Name="checkBoxIsPaid" Content="Czy zapłacono?" HorizontalAlignment="Left" Margin="176,176,0,0" VerticalAlignment="Top" Click="checkBoxIsPaid_Click" Foreground="White"/>
     </Grid>
 </Controls:MetroWindow>

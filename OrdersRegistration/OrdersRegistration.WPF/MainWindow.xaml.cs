@@ -69,7 +69,7 @@ namespace OrdersRegistration.WPF
             datePickerFrom.SelectedDate = dateFrom;
             datePickerTo.SelectedDate = dateTo;
 
-            comboBoxOrdersOnPage.SelectedValue = "---Wszystkie zlecenia---"; //wyzwala zdarzenie comboBoxOrdersOnPage_SelectionChanged
+            comboBoxOrdersOnPage.SelectedValue = "Wszystkie zlecenia"; //wyzwala zdarzenie comboBoxOrdersOnPage_SelectionChanged
         }
 
         /// <summary>
@@ -77,12 +77,12 @@ namespace OrdersRegistration.WPF
         /// </summary>
         public void storageTest()
         {
-            Model.Customer customer1 = new Model.Customer { ID = 1, Name = "Arek" };
-            _customerStorage.Create(customer1);
-            Model.Customer customer2 = new Model.Customer { ID = 2, Name = "Piotrek" };
-            _customerStorage.Create(customer2);
-            Model.Customer customer3 = new Model.Customer { ID = 3, Name = "Zenek" };
-            _customerStorage.Create(customer3);
+            //Model.Customer customer1 = new Model.Customer { ID = 1, Name = "Arek" };
+            //_customerStorage.Create(customer1);
+            //Model.Customer customer2 = new Model.Customer { ID = 2, Name = "Piotrek" };
+            //_customerStorage.Create(customer2);
+            //Model.Customer customer3 = new Model.Customer { ID = 3, Name = "Zenek" };
+            //_customerStorage.Create(customer3);
 
             //Model.Order order1 = new Model.Order { ID = 1, Name = "bubu", Comments = "tralala", Price = 143, IsPaid = true, Customer = customer1, Date = DateTime.Now };
             //_orderStorage.Create(order1);
@@ -133,11 +133,16 @@ namespace OrdersRegistration.WPF
             }
             else
             {
-                MessageBoxResult result = MessageBox.Show("Ponieważ nie ma jeszcze zdefiniowanego żadnego ZLECENIODAWCY, dodaj go teraz !", "Uwaga", MessageBoxButton.OK);
+                MessageBoxResult result = MessageBox.Show("Ponieważ nie ma jeszcze zdefiniowanego żadnego ZLECENIODAWCY, dodaj go teraz !", "Uwaga!", MessageBoxButton.OK);
 
                 if (result == MessageBoxResult.OK)
                 {
                     MenuItemAddCustomer_Click(this, e);
+                   
+                    AddOrder addOrder = new AddOrder(_orderStorage, _customerStorage);
+                    addOrder.ShowDialog();
+                    ComboBoxItemsCount();
+                    RefreshOrderList();        
                 }           
             }           
         }
@@ -239,7 +244,7 @@ namespace OrdersRegistration.WPF
         private void SetToComboBoxCustomerFilter()
         {
             Model.Customer filterCustomer = new Model.Customer();
-            filterCustomer.Name = "---Wszyscy zleceniodawcy---";
+            filterCustomer.Name = "Wszyscy zleceniodawcy";
             comboBoxCustomerFilter.Items.Insert(0, filterCustomer);
 
             foreach (var i in _customerStorage.Read())
@@ -255,7 +260,7 @@ namespace OrdersRegistration.WPF
         {
             selectedCustomer = (Model.Customer)comboBoxCustomerFilter.SelectedItem;
 
-            if (selectedCustomer.Name == "---Wszyscy zleceniodawcy---")
+            if (selectedCustomer.Name == "Wszyscy zleceniodawcy")
             {
                 selectedCustomer = null;
                 RefreshOrderList();
@@ -271,7 +276,7 @@ namespace OrdersRegistration.WPF
         /// </summary>
         private void ComboBoxOrdersOnPage()
         {
-            comboBoxOrdersOnPage.Items.Add("---Wszystkie zlecenia---");
+            comboBoxOrdersOnPage.Items.Add("Wszystkie zlecenia");
             comboBoxOrdersOnPage.Items.Add("10");
             comboBoxOrdersOnPage.Items.Add("20");
             comboBoxOrdersOnPage.Items.Add("30");
@@ -285,7 +290,7 @@ namespace OrdersRegistration.WPF
         {
             switch (comboBoxOrdersOnPage.SelectedItem.ToString())
             {
-                case ("---Wszystkie zlecenia---"):
+                case ("Wszystkie zlecenia"):
                     ordersCount = _orderStorage.Read().Count();
                     RefreshOrderList();
                     break;

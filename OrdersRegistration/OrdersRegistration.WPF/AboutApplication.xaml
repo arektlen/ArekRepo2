@@ -6,9 +6,9 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:OrdersRegistration.WPF"
         mc:Ignorable="d"
-        Title="O AUTORZE" Height="300" Width="300" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="O AUTORZE" Height="300" Width="300" ResizeMode="NoResize" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Button x:Name="buttonOkAboutApplication" Content="Ok" HorizontalAlignment="Left" Margin="195,190,0,0" VerticalAlignment="Top" Width="75" Height="35" Click="buttonOkAboutApplication_Click"/>
+        <Button x:Name="buttonOkAboutApplication" Content="Ok" HorizontalAlignment="Left" Margin="195,190,0,0" VerticalAlignment="Top" Width="75" Height="35" Click="buttonOkAboutApplication_Click" BorderBrush="OrangeRed" BorderThickness="2"/>
         <Label x:Name="labelAuthName" Content="Autor: ARKADIUSZ BEJGER" HorizontalAlignment="Left" Margin="35,74,0,0" VerticalAlignment="Top" Foreground="White"/>
         <Label x:Name="labelAppName" Content="Aplikacja: ORDERS REGISTRATION" HorizontalAlignment="Left" Margin="35,30,0,0" VerticalAlignment="Top" Foreground="White"/>
         <Label x:Name="labelAuthPhoneNumber" Content="tel.: 502 345 699" HorizontalAlignment="Left" Margin="35,181,0,0" VerticalAlignment="Top" Foreground="White"/>

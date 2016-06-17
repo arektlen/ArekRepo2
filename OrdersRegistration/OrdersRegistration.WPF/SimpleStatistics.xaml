@@ -6,7 +6,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:OrdersRegistration.WPF"
         mc:Ignorable="d"
-        Title="Statystyki" Height="550" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Statystyki" Height="550" Width="350" ResizeMode="NoResize" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label x:Name="labelOrdersCount" Content="OGÓLNA liczba zleceń:" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" Foreground="White"/>
         <Label x:Name="labelOrdersCountResult" Content="" HorizontalAlignment="Left" Margin="215,37,0,0" VerticalAlignment="Top" Foreground="White"/>
@@ -16,8 +16,8 @@
         <Label x:Name="labelSumMonth" Content="Na łączną kwotę:" HorizontalAlignment="Left" Margin="10,224,0,0" VerticalAlignment="Top" Foreground="White"/>
         <Label x:Name="labelOrdersCountMonthResult" Content="" HorizontalAlignment="Left" Margin="215,193,0,0" VerticalAlignment="Top" Foreground="White" RenderTransformOrigin="1,0.038"/>
         <Label x:Name="labelSumMonthResult" Content="" HorizontalAlignment="Left" Margin="215,224,0,0" VerticalAlignment="Top" Foreground="White" RenderTransformOrigin="0.5,0.462"/>
-        <Button x:Name="buttonOk" Content="OK" HorizontalAlignment="Left" Margin="225,455,0,0" VerticalAlignment="Top" Width="75" Click="buttonOk_Click" Height="25"/>
-        <Button x:Name="buttonGeneratePdf" Content="Generuj PDF" HorizontalAlignment="Left" Margin="30,455,0,0" VerticalAlignment="Top" Width="75" Height="25" Click="buttonGeneratePdf_Click"/>
+        <Button x:Name="buttonOk" Content="OK" HorizontalAlignment="Left" Margin="225,455,0,0" VerticalAlignment="Top" Width="75" Click="buttonOk_Click" Height="25" BorderBrush="OrangeRed" BorderThickness="2"/>
+        <Button x:Name="buttonGeneratePdf" Content="Generuj PDF" HorizontalAlignment="Left" Margin="30,455,0,0" VerticalAlignment="Top" Width="75" Height="25" Click="buttonGeneratePdf_Click" BorderBrush="OrangeRed" BorderThickness="2"/>
         <Label x:Name="labelOrdersNonPaid" Content="Liczba zleceń nieopłaconych:" HorizontalAlignment="Left" Margin="10,99,0,0" VerticalAlignment="Top" Foreground="White"/>
         <Label x:Name="labelOrdersNonPaidResult" Content="" HorizontalAlignment="Left" Margin="215,99,0,0" VerticalAlignment="Top" Foreground="White" RenderTransformOrigin="0.5,-0.269"/>
         <Label x:Name="labelSumAllNonPaid" Content="Na łączną kwotę:" HorizontalAlignment="Left" Margin="10,130,0,0" VerticalAlignment="Top" Foreground="White"/>

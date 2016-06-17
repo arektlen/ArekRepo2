@@ -6,11 +6,11 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:OrdersRegistration.WPF"
         mc:Ignorable="d"
-        Title="Edytuj dane zleceniodawcy" Height="300" Width="300" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Edytuj dane zleceniodawcy" Height="300" Width="300" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <ComboBox ItemsSource="{Binding Customers}" DisplayMemberPath="Name" x:Name="comboBoxEditCustomer" HorizontalAlignment="Left" Margin="48,56,0,0" VerticalAlignment="Top" Width="194" SelectionChanged="comboBoxEditCustomer_SelectionChanged"/>
         <TextBox x:Name="textBoxEditCustomer" HorizontalAlignment="Left" Height="23" Margin="48,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" TextChanged="textBoxEditCustomer_TextChanged"/>
-        <Button x:Name="btnEditCustomer" Content="Edytuj" HorizontalAlignment="Left" Margin="155,203,0,0" VerticalAlignment="Top" Width="87" Click="buttonEditCustomer_Click" RenderTransformOrigin="0.087,1.55" Height="29"/>
-        <Button x:Name="btnDeleteCustomer" Content="Usuń" HorizontalAlignment="Left" Margin="48,203,0,0" VerticalAlignment="Top" Width="87" Click="buttonDeleteCustomer_Click" Height="29"/>
+        <Button x:Name="btnEditCustomer" Content="Edytuj" HorizontalAlignment="Left" Margin="155,203,0,0" VerticalAlignment="Top" Width="87" Click="buttonEditCustomer_Click" RenderTransformOrigin="0.087,1.55" Height="29" BorderBrush="OrangeRed" BorderThickness="2"/>
+        <Button x:Name="btnDeleteCustomer" Content="Usuń" HorizontalAlignment="Left" Margin="48,203,0,0" VerticalAlignment="Top" Width="87" Click="buttonDeleteCustomer_Click" Height="29" BorderBrush="OrangeRed" BorderThickness="2"/>
     </Grid>
 </Controls:MetroWindow>
