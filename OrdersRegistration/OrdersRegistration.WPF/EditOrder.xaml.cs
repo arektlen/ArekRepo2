@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using OrdersRegistration.DbRepository;
 using MahApps.Metro.Controls;
+using OrdersRegistration.Validation;
 
 namespace OrdersRegistration.WPF
 {
@@ -53,35 +54,41 @@ namespace OrdersRegistration.WPF
             checkBoxIsPaid.IsChecked = _editOrder.IsPaid;
         }
 
+        /// <summary>
+        /// Wybór zleceniodawcy
+        /// </summary>
         private void comboBoxSelectCustomer_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             _editOrder.Customer = (Model.Customer)comboBoxSelectCustomer.SelectedItem;
         }
 
+        /// <summary>
+        /// Edycja nazwy zlecenia
+        /// </summary>
         private void tbEditOrdername_TextChanged(object sender, TextChangedEventArgs e)
         {
             _editOrder.Name = textBoxEditOrdername.Text;
         }
 
-        private void tbEditOrderPrice_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            decimal price;
-            if (decimal.TryParse(textBoxEditOrderPrice.Text, out price))
-            {
-                _editOrder.Price = price;
-            }
-        }
-
+        /// <summary>
+        /// Edycja komentarza (opcjonalnie)
+        /// </summary>
         private void tbEditComments_TextChanged(object sender, TextChangedEventArgs e)
         {
             _editOrder.Comments = textBoxEditComments.Text;
         }
 
+        /// <summary>
+        /// Edycja daty zlecenia
+        /// </summary>
         private void dateEditOrderPicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             _editOrder.Date = dateEditOrderPicker.SelectedDate.Value;
         }
 
+        /// <summary>
+        /// Edycja 'czy zapłacono'
+        /// </summary>
         private void checkBoxIsPaid_Click(object sender, RoutedEventArgs e)
         {
             _editOrder.IsPaid = checkBoxIsPaid.IsChecked.Value;
@@ -92,7 +99,7 @@ namespace OrdersRegistration.WPF
         /// </summary>
         private void btnEditAddOrder_Click(object sender, RoutedEventArgs e)
         {
-            if (_editOrder.Name != "" && _editOrder.Date != null && _editOrder.Price != 0 && _editOrder.Customer.ID != 0)
+            if (textBoxEditOrdername.Text != "" && _editOrder.Date != null && textBoxEditOrderPrice.Text != "" && _editOrder.Customer.ID != 0)
             {
                 _orderStorage.Create(_editOrder);
                 this.DialogResult = true;
@@ -100,6 +107,26 @@ namespace OrdersRegistration.WPF
             else
             {
                 MessageBox.Show("Musisz uzupełnić pola oznaczone GWIAZDKĄ!", "Uwaga!");
+            }
+        }
+
+        /// <summary>
+        /// Edycja kwoty zlecenia
+        /// </summary>
+        private void textBoxEditOrderPrice_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (Validators.IsDigitValidation(textBoxEditOrderPrice.Text))
+            {
+                decimal price;
+                if (decimal.TryParse(textBoxEditOrderPrice.Text, out price))
+                {
+                    _editOrder.Price = price;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Musisz podać cyfry!", "Uwaga!");
+                textBoxEditOrderPrice.Clear();
             }
         }
     }

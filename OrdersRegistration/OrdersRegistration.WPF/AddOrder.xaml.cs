@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using OrdersRegistration.DbRepository;
 using MahApps.Metro.Controls;
+using OrdersRegistration.Validation;
 
 namespace OrdersRegistration.WPF
 {
@@ -28,30 +29,33 @@ namespace OrdersRegistration.WPF
             dateOrderPicker.SelectedDate = DateTime.Now;
         }
 
+        /// <summary>
+        /// Wybranie nowego zleceniodawcy
+        /// </summary>
         private void cBselectCustomer_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             newOrder.Customer = (Model.Customer)comboBoxSelectCustomer.SelectedItem;
         }
 
+        /// <summary>
+        /// Nazwa zlecenia
+        /// </summary>
         private void tBordername_TextChanged(object sender, TextChangedEventArgs e)
         {
             newOrder.Name = textBoxOrdername.Text;
         }
 
-        private void tborderPrice_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            decimal price;
-            if (decimal.TryParse(textBoxOrderPrice.Text, out price))
-            {
-                newOrder.Price = price;
-            }    
-        }
-
+        /// <summary>
+        /// Komentarz (opcjonalny)
+        /// </summary>
         private void tBcomments_TextChanged(object sender, TextChangedEventArgs e)
         {
             newOrder.Comments = textBoxComments.Text;
         }
 
+        /// <summary>
+        /// Data zlecenia
+        /// </summary>
         private void dateOrderPicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             newOrder.Date = dateOrderPicker.SelectedDate.Value;
@@ -62,7 +66,7 @@ namespace OrdersRegistration.WPF
         /// </summary>
         private void btnAddOrder_Click(object sender, RoutedEventArgs e)
         {
-            if (newOrder.Name != "" && newOrder.Date != null && newOrder.Price != 0 && newOrder.Customer.ID != 0)
+            if (textBoxOrdername.Text != "" && newOrder.Date != null && textBoxOrderPrice.Text != "" && newOrder.Customer.ID != 0)
             {
                 _orderStorage.Create(newOrder);
                 this.DialogResult = true;
@@ -71,6 +75,26 @@ namespace OrdersRegistration.WPF
             {
                 MessageBox.Show("Musisz uzupełnić pola oznaczone GWIAZDKĄ!", "Uwaga!");
             } 
+        }
+
+        /// <summary>
+        /// Kwota zlecenia
+        /// </summary>
+        private void textBoxOrderPrice_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (Validators.IsDigitValidation(textBoxOrderPrice.Text))
+            {
+                decimal price;
+                if (decimal.TryParse(textBoxOrderPrice.Text, out price))
+                {
+                    newOrder.Price = price;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Musisz podać cyfry!", "Uwaga!");
+                textBoxOrderPrice.Clear();
+            }
         }
     }
 }

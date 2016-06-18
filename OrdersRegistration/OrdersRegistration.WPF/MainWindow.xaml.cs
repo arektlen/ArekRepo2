@@ -83,17 +83,17 @@ namespace OrdersRegistration.WPF
         /// </summary>
         public void storageTest()
         {
-            Model.Customer customer1 = new Model.Customer { ID = 1, Name = "Arek", Mail = "arek@wp.pl", PhoneNumber = "501234966" };
-            _customerStorage.Create(customer1);
-            Model.Customer customer2 = new Model.Customer { ID = 2, Name = "Piotrek", Mail = "piotr@gmail.com", PhoneNumber = "542883463" };
-            _customerStorage.Create(customer2);
-            Model.Customer customer3 = new Model.Customer { ID = 3, Name = "Zenek", Mail = "zenon@o2.pl", PhoneNumber = "602345966" };
-            _customerStorage.Create(customer3);
+            //Model.Customer customer1 = new Model.Customer { ID = 1, Name = "Arek", Mail = "arek@wp.pl", PhoneNumber = "501234966" };
+            //_customerStorage.Create(customer1);
+            //Model.Customer customer2 = new Model.Customer { ID = 2, Name = "Piotrek", Mail = "piotr@gmail.com", PhoneNumber = "542883463" };
+            //_customerStorage.Create(customer2);
+            //Model.Customer customer3 = new Model.Customer { ID = 3, Name = "Zenek", Mail = "zenon@o2.pl", PhoneNumber = "602345966" };
+            //_customerStorage.Create(customer3);
 
-            Model.Order order1 = new Model.Order { Name = "Nagranie lektorskie", Comments = "Zrealizować jak najszybciej!", Price = 150m, IsPaid = true, Customer = customer1, Date = new DateTime(2016, 6, 12) };
-            _orderStorage.Create(order1);
-            Model.Order order2 = new Model.Order { Name = "Realizacja usług masteringowych", Comments = "Posłużyć się kompresorem firmy Waves", Price = 1200m, IsPaid = false, Customer = customer2, Date = DateTime.Now.Date };
-            _orderStorage.Create(order2);
+            //Model.Order order1 = new Model.Order { Name = "Nagranie lektorskie", Comments = "Zrealizować jak najszybciej!", Price = 150m, IsPaid = true, Customer = customer1, Date = new DateTime(2016, 6, 12) };
+            //_orderStorage.Create(order1);
+            //Model.Order order2 = new Model.Order { Name = "Realizacja usług masteringowych", Comments = "Posłużyć się kompresorem firmy Waves", Price = 1200m, IsPaid = false, Customer = customer2, Date = DateTime.Now.Date };
+            //_orderStorage.Create(order2);
         }
 
         /// <summary>
