@@ -8,17 +8,17 @@
         mc:Ignorable="d"
         Title="Dodaj zlecenie" Height="400" Width="400" WindowStartupLocation="CenterScreen" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" ResizeMode="NoResize">
     <Grid>
-        <ComboBox SelectedValue="{Binding Path=Customers}" DisplayMemberPath="Name" x:Name="comboBoxSelectCustomer" Margin="50,0,0,288" SelectionChanged="cBselectCustomer_SelectionChanged" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="275" Height="23"/>
-        <TextBox x:Name="textBoxOrdername" Margin="50,0,0,229" TextWrapping="Wrap" TextChanged="tBordername_TextChanged" HorizontalAlignment="Left" Width="275" Height="23" VerticalAlignment="Bottom"/>
-        <TextBox x:Name="textBoxComments" Margin="50,0,0,111" TextWrapping="Wrap" TextChanged="tBcomments_TextChanged" HorizontalAlignment="Left" Width="275" Height="23" VerticalAlignment="Bottom"/>
-        <TextBox x:Name="textBoxOrderPrice" Margin="50,0,0,170" TextWrapping="Wrap" TextChanged="tborderPrice_TextChanged" HorizontalAlignment="Left" Width="80" Height="23" VerticalAlignment="Bottom"/>
-        <DatePicker x:Name="dateOrderPicker" Margin="50,0,0,51" SelectedDateChanged="dateOrderPicker_SelectedDateChanged" Height="24" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="113"/>
+        <ComboBox SelectedValue="{Binding Path=Customers}" DisplayMemberPath="Name" x:Name="comboBoxSelectCustomer" Margin="50,0,0,288" SelectionChanged="cBselectCustomer_SelectionChanged" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="275" Height="23" TabIndex="0"/>
+        <TextBox x:Name="textBoxOrdername" Margin="50,0,0,229" TextWrapping="Wrap" TextChanged="tBordername_TextChanged" HorizontalAlignment="Left" Width="275" Height="23" VerticalAlignment="Bottom" TabIndex="1" MaxLength="50"/>
+        <TextBox x:Name="textBoxComments" Margin="50,0,0,111" TextWrapping="Wrap" TextChanged="tBcomments_TextChanged" HorizontalAlignment="Left" Width="275" Height="23" VerticalAlignment="Bottom" TabIndex="3" MaxLength="100"/>
+        <TextBox x:Name="textBoxOrderPrice" Margin="50,0,0,170" TextWrapping="Wrap" TextChanged="tborderPrice_TextChanged" HorizontalAlignment="Left" Width="80" Height="23" VerticalAlignment="Bottom" TabIndex="2" MaxLength="15"/>
+        <DatePicker x:Name="dateOrderPicker" Margin="50,0,0,51" SelectedDateChanged="dateOrderPicker_SelectedDateChanged" Height="24" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="113" TabIndex="4"/>
         <Label x:Name="labelAddCustomer" Content="Wybierz zleceniodawcę" HorizontalContentAlignment="Left" Margin="60,0,0,315" Foreground="White" Height="26" VerticalAlignment="Bottom" Width="136" HorizontalAlignment="Left"/>
         <Label x:Name="labelOrderName" Content="Nazwa zlecenia" HorizontalContentAlignment="Left" Margin="60,0,0,257" VerticalAlignment="Bottom" Width="136" Foreground="White" Height="26" HorizontalAlignment="Left"/>
         <Label x:Name="labelPrice" Content="Kwota" HorizontalContentAlignment="Left" Margin="60,0,0,198" VerticalAlignment="Bottom" Width="136" Foreground="White" Height="26" HorizontalAlignment="Left"/>
         <Label x:Name="labelComments" Content="Komentarz" HorizontalContentAlignment="Left" Margin="60,0,0,139" VerticalAlignment="Bottom" Width="136" Foreground="White" Height="26" HorizontalAlignment="Left"/>
         <Label x:Name="labelOrderDate" Content="Data zlecenia" HorizontalContentAlignment="Left" Margin="60,0,0,80" VerticalAlignment="Bottom" Width="136" Foreground="White" Height="26" HorizontalAlignment="Left"/>
-        <Button x:Name="btnAddOrder" Content="Dodaj zlecenie" Margin="0,0,39,35" Click="btnAddOrder_Click" HorizontalAlignment="Right" Width="120" Height="40" VerticalAlignment="Bottom" BorderBrush="OrangeRed" BorderThickness="2"/>
+        <Button x:Name="btnAddOrder" Content="Dodaj zlecenie" Margin="0,0,39,35" Click="btnAddOrder_Click" HorizontalAlignment="Right" Width="120" Height="40" VerticalAlignment="Bottom" BorderBrush="OrangeRed" BorderThickness="2" TabIndex="5"/>
         <Label x:Name="labelPLN" Content="PLN" HorizontalAlignment="Left" Margin="130,173,0,0" VerticalAlignment="Top" Height="23"/>
     </Grid>
 </Controls:MetroWindow>

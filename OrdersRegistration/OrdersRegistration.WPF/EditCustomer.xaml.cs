@@ -31,19 +31,13 @@ namespace OrdersRegistration.WPF
         private void comboBoxEditCustomer_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             _customerToEdit = (Model.Customer)comboBoxEditCustomer.SelectedItem;
-            textBoxEditCustomer.Text = _customerToEdit.Name;
+            textBoxEditCustomerName.Text = _customerToEdit.Name;
+            textBoxEditCustomerMail.Text = _customerToEdit.Mail;
+            textBoxEditCustomerPhone.Text = _customerToEdit.PhoneNumber;
         }
 
         /// <summary>
-        /// Nowa nazwa edytowanego zleceniodawcy
-        /// </summary>
-        private void textBoxEditCustomer_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            _customerToEdit.Name = textBoxEditCustomer.Text;
-        }
-
-        /// <summary>
-        /// Edycja zleceniodawcy
+        /// Edycja zleceniodawcy (Button)
         /// </summary>
         private void buttonEditCustomer_Click(object sender, RoutedEventArgs e)
         {
@@ -56,7 +50,7 @@ namespace OrdersRegistration.WPF
         }
 
         /// <summary>
-        /// Usuwanie zleceniodawcy
+        /// Usuwanie zleceniodawcy (Button)
         /// </summary>
         private void buttonDeleteCustomer_Click(object sender, RoutedEventArgs e)
         {
@@ -76,6 +70,30 @@ namespace OrdersRegistration.WPF
             {
                 MessageBox.Show("Nie można usunąć zleceniodawcy, ponieważ ma on przypisane zlecenia!");
             }
+        }
+
+        /// <summary>
+        /// Nowa nazwa edytowanego zleceniodawcy
+        /// </summary>
+        private void textBoxEditCustomerName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            _customerToEdit.Name = textBoxEditCustomerName.Text;
+        }
+
+        /// <summary>
+        /// Nowy mail edytowanego zleceniodawcy
+        /// </summary>
+        private void textBoxEditCustomerMail_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            _customerToEdit.Mail = textBoxEditCustomerMail.Text;
+        }
+
+        /// <summary>
+        /// Nowy numer telefonu edytowanego zlecniodawcy
+        /// </summary>
+        private void textBoxEditCustomerPhone_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            _customerToEdit.PhoneNumber = textBoxEditCustomerPhone.Text;
         }
     }
 }

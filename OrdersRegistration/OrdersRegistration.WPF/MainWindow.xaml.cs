@@ -77,16 +77,16 @@ namespace OrdersRegistration.WPF
         /// </summary>
         public void storageTest()
         {
-            //Model.Customer customer1 = new Model.Customer { ID = 1, Name = "Arek" };
+            //Model.Customer customer1 = new Model.Customer { ID = 1, Name = "Arek", Mail = "arek@wp.pl", PhoneNumber = "501234966" };
             //_customerStorage.Create(customer1);
-            //Model.Customer customer2 = new Model.Customer { ID = 2, Name = "Piotrek" };
+            //Model.Customer customer2 = new Model.Customer { ID = 2, Name = "Piotrek", Mail = "piotr@gmail.com", PhoneNumber = "542883463" };
             //_customerStorage.Create(customer2);
-            //Model.Customer customer3 = new Model.Customer { ID = 3, Name = "Zenek" };
+            //Model.Customer customer3 = new Model.Customer { ID = 3, Name = "Zenek", Mail = "zenon@o2.pl", PhoneNumber = "602345966" };
             //_customerStorage.Create(customer3);
 
-            //Model.Order order1 = new Model.Order { ID = 1, Name = "bubu", Comments = "tralala", Price = 143, IsPaid = true, Customer = customer1, Date = DateTime.Now };
+            //Model.Order order1 = new Model.Order { Name = "bubu", Comments = "tralala", Price = 143m, IsPaid = true, Customer = customer1, Date = new DateTime(2016, 5, 12) };
             //_orderStorage.Create(order1);
-            //Model.Order order2 = new Model.Order { ID = 2, Name = "zasd", Comments = "ijijij", Price = 443, IsPaid = false, Customer = customer2, Date = DateTime.Now };
+            //Model.Order order2 = new Model.Order { Name = "zasd", Comments = "ijijij", Price = 443m, IsPaid = false, Customer = customer2, Date = DateTime.Now.Date};
             //_orderStorage.Create(order2);
         }
 
@@ -120,6 +120,8 @@ namespace OrdersRegistration.WPF
         /// </summary>
         private void btnAddOrder_Click(object sender, RoutedEventArgs e)
         {
+            ListNotEmptyCheck();
+
             if (_customerStorage.Read().Count() != 0)
             {
                 AddOrder addOrder = new AddOrder(_orderStorage, _customerStorage);
@@ -152,6 +154,8 @@ namespace OrdersRegistration.WPF
         /// </summary>
         private void MenuItem_EditOrder(object sender, RoutedEventArgs e)
         {
+            ListNotEmptyCheck();
+
             Model.Order selectedOrder = (Model.Order)dataGrid.SelectedItem;
 
             if (selectedOrder != null)
@@ -175,6 +179,8 @@ namespace OrdersRegistration.WPF
         /// </summary>
         private void MenuItem_DeleteOrder(object sender, RoutedEventArgs e)
         {
+            ListNotEmptyCheck();
+
             if (dataGrid.SelectedItem != null)
             {
                 Model.Order orderToDelete = (Model.Order)dataGrid.SelectedItem;
@@ -201,10 +207,8 @@ namespace OrdersRegistration.WPF
             AddCustomer addCustomer = new AddCustomer(_customerStorage);
             addCustomer.ShowDialog();
 
-            foreach (var i in _customerStorage.Read())
-            {
-                comboBoxCustomerFilter.Items.Add(i);
-            }
+            comboBoxCustomerFilter.Items.Clear();
+            SetToComboBoxCustomerFilter();            
         }
 
         /// <summary>
@@ -212,12 +216,16 @@ namespace OrdersRegistration.WPF
         /// </summary>
         private void MenuItem_EditCustomer(object sender, RoutedEventArgs e)
         {
+            ListNotEmptyCheck();
+
             EditCustomer editCustomer = new EditCustomer(_customerStorage);
 
             bool? result = editCustomer.ShowDialog();
             if (result.HasValue && result.Value)
             {
                 RefreshOrderList();
+                comboBoxCustomerFilter.Items.Clear();
+                SetToComboBoxCustomerFilter();
             }
         }
 
@@ -235,6 +243,8 @@ namespace OrdersRegistration.WPF
         /// </summary>
         private void MenuItemAppClose_Click(object sender, RoutedEventArgs e)
         {
+            ListNotEmptyCheck();
+
             Application.Current.Shutdown();
         }
 
@@ -295,19 +305,19 @@ namespace OrdersRegistration.WPF
                     RefreshOrderList();
                     break;
                 case ("10"):
-                    ordersCount = 1;
+                    ordersCount = 10;
                     RefreshOrderList();
                     break;
                 case ("20"):
-                    ordersCount = 2;
+                    ordersCount = 20;
                     RefreshOrderList();
                     break;
                 case ("30"):
-                    ordersCount = 3;
+                    ordersCount = 30;
                     RefreshOrderList();
                     break;
                 case ("40"):
-                    ordersCount = 4;
+                    ordersCount = 40;
                     RefreshOrderList();
                     break;
                 default:
@@ -358,10 +368,12 @@ namespace OrdersRegistration.WPF
             foreach (var i in _isPaidList)
             {
                 _orderStorage.Update(i);
+               
             }
 
             _isPaidList.Clear();
             buttonIsPaid.IsEnabled = false;
+            RefreshOrderList();
         }
 
         /// <summary>
@@ -407,6 +419,26 @@ namespace OrdersRegistration.WPF
                 parent = VisualTreeHelper.GetParent(parent) as UIElement;
             }
             return null;
+        }
+
+        /// <summary>
+        /// Metoda sprawdzająca, czy w kolumnie 'IsPaid' (dataGrid) zaszły zmiany
+        /// </summary>
+        public void ListNotEmptyCheck()
+        {
+            if (_isPaidList.Count != 0)
+            {
+                MessageBoxResult result = MessageBox.Show("Zmieniono wartość pola 'Zapłacono'.\nZapisać zmiany?", "NIE ZATWIERDZONO ZMIAN!", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    buttonIsPaid_Click(this, new RoutedEventArgs());
+                }
+                else
+                {
+                    _isPaidList.Clear();
+                    RefreshOrderList();
+                }
+            }
         }
     }
 }

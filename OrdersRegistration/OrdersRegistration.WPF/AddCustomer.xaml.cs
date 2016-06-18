@@ -20,9 +20,26 @@ namespace OrdersRegistration.WPF
 
         private void btnAddCustomer_Click(object sender, RoutedEventArgs e)
         {
-            newCustomer.Name = tBAddCustomer.Text;
-            _customerStorage.Create(newCustomer);
-            this.DialogResult = true;
+            if (newCustomer.Name != null)
+            {
+                _customerStorage.Create(newCustomer);
+                this.DialogResult = true;
+            }         
+        }
+
+        private void textBoxAddCustomerMail_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            newCustomer.Mail = textBoxAddCustomerMail.Text;
+        }
+
+        private void textBoxAddCustomerPhone_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            newCustomer.PhoneNumber = textBoxAddCustomerPhone.Text;
+        }
+
+        private void tBAddCustomerName_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            newCustomer.Name = tBAddCustomerName.Text;
         }
     }
 }

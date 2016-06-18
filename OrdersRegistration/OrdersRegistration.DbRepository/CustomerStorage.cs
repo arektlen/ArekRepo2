@@ -11,7 +11,9 @@ namespace OrdersRegistration.DbRepository
             {
                 context.Customers.Add(new Customer()
                 {
-                    Name = element.Name
+                    Name = element.Name,
+                    Mail = element.Mail,
+                    PhoneNumber = element.PhoneNumber                  
                 });
 
                 context.SaveChanges();
@@ -42,6 +44,8 @@ namespace OrdersRegistration.DbRepository
                 var elementToUpdate = context.Customers.SingleOrDefault(o => o.Id == element.ID);
 
                 elementToUpdate.Name = element.Name;
+                elementToUpdate.Mail = element.Mail;
+                elementToUpdate.PhoneNumber = element.PhoneNumber;
                 context.SaveChanges();
             }
         }

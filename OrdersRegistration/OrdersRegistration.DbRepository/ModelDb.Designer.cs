@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo\OrdersRegistration\Voiceover.DbRepository\ModelDb.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.DbRepository\ModelDb.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

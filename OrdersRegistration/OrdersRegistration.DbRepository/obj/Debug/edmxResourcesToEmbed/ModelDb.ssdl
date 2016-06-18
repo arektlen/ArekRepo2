@@ -6,6 +6,8 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Mail" Type="nchar" MaxLength="50" />
+    <Property Name="PhoneNumber" Type="nchar" MaxLength="30" />
   </EntityType>
   <EntityType Name="Order">
     <Key>
@@ -14,12 +16,12 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Date" Type="datetime" Nullable="false" />
-    <Property Name="Comments" Type="nvarchar" MaxLength="80" />
+    <Property Name="Comments" Type="nvarchar" MaxLength="100" />
     <Property Name="Price" Type="money" Nullable="false" />
     <Property Name="IsPaid" Type="bit" Nullable="false" />
     <Property Name="IdCustomer" Type="int" Nullable="false" />
   </EntityType>
-  <Association Name="FK__Order__IdCustome__15502E78">
+  <Association Name="FK__Order__IdCustome__34C8D9D1">
     <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
     <End Role="Order" Type="Self.Order" Multiplicity="*" />
     <ReferentialConstraint>
@@ -34,7 +36,7 @@
   <EntityContainer Name="Database1ModelStoreContainer">
     <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__Order__IdCustome__15502E78" Association="Self.FK__Order__IdCustome__15502E78">
+    <AssociationSet Name="FK__Order__IdCustome__34C8D9D1" Association="Self.FK__Order__IdCustome__34C8D9D1">
       <End Role="Customer" EntitySet="Customer" />
       <End Role="Order" EntitySet="Order" />
     </AssociationSet>

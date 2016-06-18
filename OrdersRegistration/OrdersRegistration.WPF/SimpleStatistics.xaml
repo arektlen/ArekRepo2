@@ -16,8 +16,8 @@
         <Label x:Name="labelSumMonth" Content="Na łączną kwotę:" HorizontalAlignment="Left" Margin="10,224,0,0" VerticalAlignment="Top" Foreground="White"/>
         <Label x:Name="labelOrdersCountMonthResult" Content="" HorizontalAlignment="Left" Margin="215,193,0,0" VerticalAlignment="Top" Foreground="White" RenderTransformOrigin="1,0.038"/>
         <Label x:Name="labelSumMonthResult" Content="" HorizontalAlignment="Left" Margin="215,224,0,0" VerticalAlignment="Top" Foreground="White" RenderTransformOrigin="0.5,0.462"/>
-        <Button x:Name="buttonOk" Content="OK" HorizontalAlignment="Left" Margin="225,455,0,0" VerticalAlignment="Top" Width="75" Click="buttonOk_Click" Height="25" BorderBrush="OrangeRed" BorderThickness="2"/>
-        <Button x:Name="buttonGeneratePdf" Content="Generuj PDF" HorizontalAlignment="Left" Margin="30,455,0,0" VerticalAlignment="Top" Width="75" Height="25" Click="buttonGeneratePdf_Click" BorderBrush="OrangeRed" BorderThickness="2"/>
+        <Button x:Name="buttonOk" Content="OK" Margin="0,460,35,19" HorizontalAlignment="Right" Click="buttonOk_Click" Height="40" TextElement.FontSize="14" BorderBrush="OrangeRed" BorderThickness="2" Width="105" TabIndex="1"/>
+        <Button x:Name="buttonGeneratePdf" Content="Generuj PDF" Margin="35,460,0,19" HorizontalAlignment="Left" Height="40" Click="buttonGeneratePdf_Click" TextElement.FontSize="14" BorderBrush="OrangeRed" BorderThickness="2" Width="105" TabIndex="2"/>
         <Label x:Name="labelOrdersNonPaid" Content="Liczba zleceń nieopłaconych:" HorizontalAlignment="Left" Margin="10,99,0,0" VerticalAlignment="Top" Foreground="White"/>
         <Label x:Name="labelOrdersNonPaidResult" Content="" HorizontalAlignment="Left" Margin="215,99,0,0" VerticalAlignment="Top" Foreground="White" RenderTransformOrigin="0.5,-0.269"/>
         <Label x:Name="labelSumAllNonPaid" Content="Na łączną kwotę:" HorizontalAlignment="Left" Margin="10,130,0,0" VerticalAlignment="Top" Foreground="White"/>

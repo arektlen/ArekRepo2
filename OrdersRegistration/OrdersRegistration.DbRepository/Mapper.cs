@@ -7,6 +7,8 @@
             Model.Customer newCustomer = new Model.Customer();
             newCustomer.ID = dbCustomer.Id;
             newCustomer.Name = dbCustomer.Name;
+            newCustomer.Mail = dbCustomer.Mail;
+            newCustomer.PhoneNumber = dbCustomer.PhoneNumber;
 
             return newCustomer;
         }

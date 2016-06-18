@@ -8,9 +8,14 @@
         mc:Ignorable="d"
         Title="Edytuj dane zleceniodawcy" Height="300" Width="300" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
-        <ComboBox ItemsSource="{Binding Customers}" DisplayMemberPath="Name" x:Name="comboBoxEditCustomer" HorizontalAlignment="Left" Margin="48,56,0,0" VerticalAlignment="Top" Width="194" SelectionChanged="comboBoxEditCustomer_SelectionChanged"/>
-        <TextBox x:Name="textBoxEditCustomer" HorizontalAlignment="Left" Height="23" Margin="48,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" TextChanged="textBoxEditCustomer_TextChanged"/>
-        <Button x:Name="btnEditCustomer" Content="Edytuj" HorizontalAlignment="Left" Margin="155,203,0,0" VerticalAlignment="Top" Width="87" Click="buttonEditCustomer_Click" RenderTransformOrigin="0.087,1.55" Height="29" BorderBrush="OrangeRed" BorderThickness="2"/>
-        <Button x:Name="btnDeleteCustomer" Content="Usuń" HorizontalAlignment="Left" Margin="48,203,0,0" VerticalAlignment="Top" Width="87" Click="buttonDeleteCustomer_Click" Height="29" BorderBrush="OrangeRed" BorderThickness="2"/>
+        <ComboBox ItemsSource="{Binding Customers}" DisplayMemberPath="Name" x:Name="comboBoxEditCustomer" Text="Wybierz zleceniodawcę" IsReadOnly="True" IsEditable="True" HorizontalAlignment="Left" Margin="48,19,0,0" VerticalAlignment="Top" Width="194" SelectionChanged="comboBoxEditCustomer_SelectionChanged" TabIndex="0"/>
+        <TextBox x:Name="textBoxEditCustomerName" HorizontalAlignment="Left" Height="23" Margin="48,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" TextChanged="textBoxEditCustomerName_TextChanged" TabIndex="1" MaxLength="50"/>
+        <Button x:Name="btnEditCustomer" Content="Edytuj" HorizontalAlignment="Right" Margin="0,0,25,16" Width="87" Click="buttonEditCustomer_Click" RenderTransformOrigin="0.087,1.55" Height="29" BorderBrush="OrangeRed" BorderThickness="2" TabIndex="4" VerticalAlignment="Bottom"/>
+        <Button x:Name="btnDeleteCustomer" Content="Usuń" HorizontalAlignment="Left" Margin="25,0,0,16" Width="87" Click="buttonDeleteCustomer_Click" BorderBrush="OrangeRed" BorderThickness="2" TabIndex="5" Height="29" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="textBoxEditCustomerMail" HorizontalAlignment="Left" Height="23" Margin="48,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" TextChanged="textBoxEditCustomerMail_TextChanged" TabIndex="2" MaxLength="50"/>
+        <TextBox x:Name="textBoxEditCustomerPhone" HorizontalAlignment="Left" Height="23" Margin="48,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" TextChanged="textBoxEditCustomerPhone_TextChanged" TabIndex="3" MaxLength="30"/>
+        <Label x:Name="labelEditCustomerName" Content="Edytuj nazwę" HorizontalAlignment="Left" Margin="48,45,0,0" VerticalAlignment="Top" Height="27" Width="194" VerticalContentAlignment="Center"/>
+        <Label x:Name="labelEditCustomerMail" Content="Edytuj E-mail" HorizontalAlignment="Left" Margin="48,98,0,0" VerticalAlignment="Top" Height="27" Width="194" VerticalContentAlignment="Center"/>
+        <Label x:Name="labelEditCustomerPhone" Content="Edytuj numer telefonu" HorizontalAlignment="Left" Margin="48,151,0,0" VerticalAlignment="Top" Height="27" Width="194" VerticalContentAlignment="Center"/>
     </Grid>
 </Controls:MetroWindow>

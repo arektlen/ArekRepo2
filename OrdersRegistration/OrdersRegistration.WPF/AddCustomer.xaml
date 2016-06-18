@@ -8,8 +8,12 @@
         mc:Ignorable="d"
         Title="Dodaj zleceniodawcę" Height="300" Width="300" ResizeMode="NoResize" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Button x:Name="btnAddCustomer" Content="Dodaj zleceniodawcę" HorizontalAlignment="Right" Margin="0,0,10,23" VerticalAlignment="Bottom" Width="145" Height="36" Click="btnAddCustomer_Click" BorderBrush="OrangeRed" BorderThickness="2"/>
-        <TextBox x:Name="tBAddCustomer" HorizontalAlignment="Right" Height="23" Margin="0,0,42,158" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="220"/>
-        <Label x:Name="label" Content="Podaj nazwę zleceniodawcy" HorizontalContentAlignment="Left" Margin="0,0,42,191" Foreground="White" Height="27" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="220"/>
+        <Button x:Name="btnAddCustomer" Content="Dodaj zleceniodawcę" HorizontalAlignment="Right" Margin="0,0,10,23" VerticalAlignment="Bottom" Width="145" Height="36" Click="btnAddCustomer_Click" BorderBrush="OrangeRed" BorderThickness="2" TabIndex="3"/>
+        <TextBox x:Name="tBAddCustomerName" Height="23" Margin="30,0,0,199" TextWrapping="Wrap" VerticalAlignment="Bottom" TabIndex="0" TextChanged="tBAddCustomerName_TextChanged" HorizontalAlignment="Left" Width="220" MaxLength="50"/>
+        <Label x:Name="labelAddCustomerName" Content="Podaj nazwę" HorizontalContentAlignment="Left" Margin="30,0,0,225" Foreground="White" Height="27" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="220"/>
+        <TextBox x:Name="textBoxAddCustomerMail" HorizontalAlignment="Left" Height="23" Margin="30,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="220" TextChanged="textBoxAddCustomerMail_TextChanged" TabIndex="1" MaxLength="50"/>
+        <TextBox x:Name="textBoxAddCustomerPhone" HorizontalAlignment="Left" Height="23" Margin="30,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="220" TextChanged="textBoxAddCustomerPhone_TextChanged" TabIndex="2" MaxLength="30"/>
+        <Label x:Name="labelAddCustomerMail" Content="Podaj E-mail" HorizontalAlignment="Left" Margin="30,70,0,0" VerticalAlignment="Top" Width="220"/>
+        <Label x:Name="labelAddCustomerPhone" Content="Podaj numer telefonu" HorizontalAlignment="Left" Margin="30,122,0,0" VerticalAlignment="Top" Width="220"/>
     </Grid>
 </Controls:MetroWindow>
