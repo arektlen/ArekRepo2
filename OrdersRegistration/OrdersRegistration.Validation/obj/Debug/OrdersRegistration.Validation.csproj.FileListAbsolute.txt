@@ -1,0 +1,5 @@
+C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.Validation\bin\Debug\OrdersRegistration.Validation.dll
+C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.Validation\bin\Debug\OrdersRegistration.Validation.pdb
+C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.Validation\obj\Debug\OrdersRegistration.Validation.csprojResolveAssemblyReference.cache
+C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.Validation\obj\Debug\OrdersRegistration.Validation.dll
+C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.Validation\obj\Debug\OrdersRegistration.Validation.pdb

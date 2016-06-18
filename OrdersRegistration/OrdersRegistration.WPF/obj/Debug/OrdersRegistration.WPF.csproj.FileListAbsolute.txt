@@ -148,3 +148,5 @@ C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegist
 C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.WPF\bin\Debug\MahApps.Metro.dll
 C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.WPF\bin\Debug\MahApps.Metro.pdb
 C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.WPF\bin\Debug\MahApps.Metro.xml
+C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.WPF\bin\Debug\OrdersRegistration.Validation.dll
+C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.WPF\bin\Debug\OrdersRegistration.Validation.pdb

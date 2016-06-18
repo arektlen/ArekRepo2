@@ -229,6 +229,10 @@
       <Project>{e82254b1-a394-46b6-987d-e2c717a127b4}</Project>
       <Name>OrdersRegistration.Statistics</Name>
     </ProjectReference>
+    <ProjectReference Include="..\OrdersRegistration.Validation\OrdersRegistration.Validation.csproj">
+      <Project>{6d263315-a88c-411d-8a90-706a3dbfee53}</Project>
+      <Name>OrdersRegistration.Validation</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

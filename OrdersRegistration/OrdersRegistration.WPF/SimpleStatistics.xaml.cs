@@ -11,6 +11,9 @@ namespace OrdersRegistration.WPF
     {
         Statistic1 statistic1 = new Statistic1();
 
+        /// <summary>
+        /// ctor
+        /// </summary>
         public SimpleStatistics()
         {
             InitializeComponent();

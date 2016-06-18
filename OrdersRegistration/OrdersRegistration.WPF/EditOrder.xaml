@@ -21,5 +21,8 @@
         <Button x:Name="btnEditAddOrder" Content="Edytuj zlecenie" Margin="0,0,39,35" Click="btnEditAddOrder_Click" HorizontalAlignment="Right" Width="120" Height="40" VerticalAlignment="Bottom" BorderBrush="OrangeRed" BorderThickness="2" TabIndex="6"/>
         <Label x:Name="labelPLN" Content="PLN" HorizontalAlignment="Left" Margin="130,173,0,0" VerticalAlignment="Top" Height="23"/>
         <CheckBox x:Name="checkBoxIsPaid" Content="Czy zapłacono?" HorizontalAlignment="Left" Margin="176,176,0,0" VerticalAlignment="Top" Click="checkBoxIsPaid_Click" Foreground="White" TabIndex="3"/>
+        <Label x:Name="label" Content="*" HorizontalAlignment="Left" Margin="326,42,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label1" Content="*" HorizontalAlignment="Left" Margin="325,102,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label2" Content="*" HorizontalAlignment="Left" Margin="130,162,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Controls:MetroWindow>

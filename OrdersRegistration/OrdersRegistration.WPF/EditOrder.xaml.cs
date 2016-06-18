@@ -10,7 +10,7 @@ namespace OrdersRegistration.WPF
     /// </summary>
     public partial class EditOrder : MetroWindow
     {
-        private Model.Order _newOrder = new Model.Order();
+        private Model.Order _editOrder = new Model.Order();
         private IStorable<Model.Order> _orderStorage;
 
         /// <summary>
@@ -18,7 +18,7 @@ namespace OrdersRegistration.WPF
         /// </summary>
         public EditOrder(Model.Order editOrder, IStorable<Model.Order> orderStorage)
         {
-            _newOrder = editOrder;
+            _editOrder = editOrder;
             _orderStorage = orderStorage;
 
             InitializeComponent();
@@ -26,13 +26,16 @@ namespace OrdersRegistration.WPF
             SetToTextbox();
         }
 
+        /// <summary>
+        /// Przepisanie danych wybranego zleceniodawcy do textBox'ów
+        /// </summary>
         private void SetToTextbox()
         {
             CustomerStorage _customerStorage = new CustomerStorage();
 
             foreach (var i in _customerStorage.Read())
             {
-                if (i.Name == _newOrder.Customer.Name)
+                if (i.Name == _editOrder.Customer.Name)
                 {
                     comboBoxSelectCustomer.Items.Insert(0, i);
                     comboBoxSelectCustomer.Text = i.Name;
@@ -43,21 +46,21 @@ namespace OrdersRegistration.WPF
                 }
             }
 
-            textBoxEditOrdername.Text = _newOrder.Name;
-            textBoxEditComments.Text = _newOrder.Comments;
-            textBoxEditOrderPrice.Text = string.Format("{0:0.00}", _newOrder.Price);
-            dateEditOrderPicker.SelectedDate = _newOrder.Date;
-            checkBoxIsPaid.IsChecked = _newOrder.IsPaid;
+            textBoxEditOrdername.Text = _editOrder.Name;
+            textBoxEditComments.Text = _editOrder.Comments;
+            textBoxEditOrderPrice.Text = string.Format("{0:0.00}", _editOrder.Price);
+            dateEditOrderPicker.SelectedDate = _editOrder.Date;
+            checkBoxIsPaid.IsChecked = _editOrder.IsPaid;
         }
 
         private void comboBoxSelectCustomer_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            _newOrder.Customer = (Model.Customer)comboBoxSelectCustomer.SelectedItem;
+            _editOrder.Customer = (Model.Customer)comboBoxSelectCustomer.SelectedItem;
         }
 
         private void tbEditOrdername_TextChanged(object sender, TextChangedEventArgs e)
         {
-            _newOrder.Name = textBoxEditOrdername.Text;
+            _editOrder.Name = textBoxEditOrdername.Text;
         }
 
         private void tbEditOrderPrice_TextChanged(object sender, TextChangedEventArgs e)
@@ -65,29 +68,39 @@ namespace OrdersRegistration.WPF
             decimal price;
             if (decimal.TryParse(textBoxEditOrderPrice.Text, out price))
             {
-                _newOrder.Price = price;
+                _editOrder.Price = price;
             }
         }
 
         private void tbEditComments_TextChanged(object sender, TextChangedEventArgs e)
         {
-            _newOrder.Comments = textBoxEditComments.Text;
+            _editOrder.Comments = textBoxEditComments.Text;
         }
 
         private void dateEditOrderPicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            _newOrder.Date = dateEditOrderPicker.SelectedDate.Value;
+            _editOrder.Date = dateEditOrderPicker.SelectedDate.Value;
         }
 
         private void checkBoxIsPaid_Click(object sender, RoutedEventArgs e)
         {
-            _newOrder.IsPaid = checkBoxIsPaid.IsChecked.Value;
+            _editOrder.IsPaid = checkBoxIsPaid.IsChecked.Value;
         }
 
+        /// <summary>
+        /// Aktualizacja danych wybranego zleceniodawcy (Button)
+        /// </summary>
         private void btnEditAddOrder_Click(object sender, RoutedEventArgs e)
         {
-            _orderStorage.Update(_newOrder);
-            this.DialogResult = true;
+            if (_editOrder.Name != "" && _editOrder.Date != null && _editOrder.Price != 0 && _editOrder.Customer.ID != 0)
+            {
+                _orderStorage.Create(_editOrder);
+                this.DialogResult = true;
+            }
+            else
+            {
+                MessageBox.Show("Musisz uzupełnić pola oznaczone GWIAZDKĄ!", "Uwaga!");
+            }
         }
     }
 }

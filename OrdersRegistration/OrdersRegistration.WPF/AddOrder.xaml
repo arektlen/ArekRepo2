@@ -20,5 +20,8 @@
         <Label x:Name="labelOrderDate" Content="Data zlecenia" HorizontalContentAlignment="Left" Margin="60,0,0,80" VerticalAlignment="Bottom" Width="136" Foreground="White" Height="26" HorizontalAlignment="Left"/>
         <Button x:Name="btnAddOrder" Content="Dodaj zlecenie" Margin="0,0,39,35" Click="btnAddOrder_Click" HorizontalAlignment="Right" Width="120" Height="40" VerticalAlignment="Bottom" BorderBrush="OrangeRed" BorderThickness="2" TabIndex="5"/>
         <Label x:Name="labelPLN" Content="PLN" HorizontalAlignment="Left" Margin="130,173,0,0" VerticalAlignment="Top" Height="23"/>
+        <Label x:Name="label" Content="*" HorizontalAlignment="Left" Margin="325,42,0,0" VerticalAlignment="Top" Height="29"/>
+        <Label x:Name="label1" Content="*" HorizontalAlignment="Left" Margin="325,102,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label2" Content="*" HorizontalAlignment="Left" Margin="130,161,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Controls:MetroWindow>

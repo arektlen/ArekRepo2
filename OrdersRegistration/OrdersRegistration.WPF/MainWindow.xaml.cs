@@ -39,6 +39,9 @@ namespace OrdersRegistration.WPF
             InitializeValues();          
         }
 
+        /// <summary>
+        /// Dodawanie/usuwanie zleceń, w których zmieniono właściwość 'IsPaid', do tymczasowej listy w celu obsługi wprowadzonych zmian
+        /// </summary>
         private void Order_PropertyChanged(object sender, EventArgs e)
         {
             Model.Order _newOrder = (Model.Order)dataGrid.SelectedItem;
@@ -58,6 +61,9 @@ namespace OrdersRegistration.WPF
             }
         }
 
+        /// <summary>
+        /// Wartości inicjalizujące
+        /// </summary>
         private void InitializeValues()
         {
             ordersCount = 20; 
@@ -77,17 +83,17 @@ namespace OrdersRegistration.WPF
         /// </summary>
         public void storageTest()
         {
-            //Model.Customer customer1 = new Model.Customer { ID = 1, Name = "Arek", Mail = "arek@wp.pl", PhoneNumber = "501234966" };
-            //_customerStorage.Create(customer1);
-            //Model.Customer customer2 = new Model.Customer { ID = 2, Name = "Piotrek", Mail = "piotr@gmail.com", PhoneNumber = "542883463" };
-            //_customerStorage.Create(customer2);
-            //Model.Customer customer3 = new Model.Customer { ID = 3, Name = "Zenek", Mail = "zenon@o2.pl", PhoneNumber = "602345966" };
-            //_customerStorage.Create(customer3);
+            Model.Customer customer1 = new Model.Customer { ID = 1, Name = "Arek", Mail = "arek@wp.pl", PhoneNumber = "501234966" };
+            _customerStorage.Create(customer1);
+            Model.Customer customer2 = new Model.Customer { ID = 2, Name = "Piotrek", Mail = "piotr@gmail.com", PhoneNumber = "542883463" };
+            _customerStorage.Create(customer2);
+            Model.Customer customer3 = new Model.Customer { ID = 3, Name = "Zenek", Mail = "zenon@o2.pl", PhoneNumber = "602345966" };
+            _customerStorage.Create(customer3);
 
-            //Model.Order order1 = new Model.Order { Name = "bubu", Comments = "tralala", Price = 143m, IsPaid = true, Customer = customer1, Date = new DateTime(2016, 5, 12) };
-            //_orderStorage.Create(order1);
-            //Model.Order order2 = new Model.Order { Name = "zasd", Comments = "ijijij", Price = 443m, IsPaid = false, Customer = customer2, Date = DateTime.Now.Date};
-            //_orderStorage.Create(order2);
+            Model.Order order1 = new Model.Order { Name = "Nagranie lektorskie", Comments = "Zrealizować jak najszybciej!", Price = 150m, IsPaid = true, Customer = customer1, Date = new DateTime(2016, 6, 12) };
+            _orderStorage.Create(order1);
+            Model.Order order2 = new Model.Order { Name = "Realizacja usług masteringowych", Comments = "Posłużyć się kompresorem firmy Waves", Price = 1200m, IsPaid = false, Customer = customer2, Date = DateTime.Now.Date };
+            _orderStorage.Create(order2);
         }
 
         /// <summary>
@@ -135,7 +141,7 @@ namespace OrdersRegistration.WPF
             }
             else
             {
-                MessageBoxResult result = MessageBox.Show("Ponieważ nie ma jeszcze zdefiniowanego żadnego ZLECENIODAWCY, dodaj go teraz !", "Uwaga!", MessageBoxButton.OK);
+                MessageBoxResult result = MessageBox.Show("Ponieważ nie ma jeszcze zdefiniowanego żadnego ZLECENIODAWCY, dodaj go teraz !", "Uwaga!", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 if (result == MessageBoxResult.OK)
                 {
@@ -145,7 +151,7 @@ namespace OrdersRegistration.WPF
                     addOrder.ShowDialog();
                     ComboBoxItemsCount();
                     RefreshOrderList();        
-                }           
+                }       
             }           
         }
 
@@ -170,7 +176,7 @@ namespace OrdersRegistration.WPF
             }
             else
             {
-                MessageBox.Show("Nie zaznaczono żadnego zlecenia!");
+                MessageBox.Show("Nie zaznaczono żadnego zlecenia!", "Uwaga!");
             }
         }
 
@@ -185,7 +191,7 @@ namespace OrdersRegistration.WPF
             {
                 Model.Order orderToDelete = (Model.Order)dataGrid.SelectedItem;
 
-                MessageBoxResult result = MessageBox.Show("Czy chcesz usunąć zlecenie: " + orderToDelete.Name + "\nod klienta " + orderToDelete.Customer.Name + "?", "Uwaga!", MessageBoxButton.YesNo);
+                MessageBoxResult result = MessageBox.Show("Czy chcesz usunąć zlecenie: " + orderToDelete.Name + "\nod klienta " + orderToDelete.Customer.Name + "?", "Uwaga!", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
                 if (result == MessageBoxResult.Yes)
                 {
@@ -195,7 +201,7 @@ namespace OrdersRegistration.WPF
             }
             else
             {
-                MessageBox.Show("Nie wybrano zlecenia!");
+                MessageBox.Show("Nie wybrano zlecenia!", "Uwaga!");
             }
         }
 
@@ -268,6 +274,8 @@ namespace OrdersRegistration.WPF
         /// </summary>
         private void comboBoxCustomerFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            ListNotEmptyCheck();
+
             selectedCustomer = (Model.Customer)comboBoxCustomerFilter.SelectedItem;
 
             if (selectedCustomer.Name == "Wszyscy zleceniodawcy")
@@ -298,6 +306,8 @@ namespace OrdersRegistration.WPF
         /// </summary>
         private void ComboBoxItemsCount()
         {
+            ListNotEmptyCheck();
+
             switch (comboBoxOrdersOnPage.SelectedItem.ToString())
             {
                 case ("Wszystkie zlecenia"):
@@ -305,24 +315,22 @@ namespace OrdersRegistration.WPF
                     RefreshOrderList();
                     break;
                 case ("10"):
-                    ordersCount = 10;
+                    ordersCount = 1;
                     RefreshOrderList();
                     break;
                 case ("20"):
-                    ordersCount = 20;
+                    ordersCount = 2;
                     RefreshOrderList();
                     break;
                 case ("30"):
-                    ordersCount = 30;
+                    ordersCount = 3;
                     RefreshOrderList();
                     break;
                 case ("40"):
-                    ordersCount = 40;
+                    ordersCount = 4;
                     RefreshOrderList();
                     break;
                 default:
-                    //ordersCount = 10;
-                    //RefreshOrderList();
                     break;
             }
         }
@@ -335,6 +343,9 @@ namespace OrdersRegistration.WPF
             ComboBoxItemsCount();
         }
 
+        /// <summary>
+        /// Okno 'Statystyki' (menu)
+        /// </summary>
         private void MenuSimpleStatistics_Click(object sender, RoutedEventArgs e)
         {
             if (_orderStorage.Read().Count() != 0)
@@ -344,18 +355,26 @@ namespace OrdersRegistration.WPF
             }
             else
             {
-                MessageBox.Show("W bazie danych nie ma żadnych zleceń!", "Uwaga", MessageBoxButton.OK);
+                MessageBox.Show("W bazie danych nie ma żadnych zleceń!", "Informacja", MessageBoxButton.OK);
             }    
         }
 
+        /// <summary>
+        /// Data wybrana w datePickerFrom do zmiennej dateFrom
+        /// </summary>
         private void datePickerFrom_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
+            ListNotEmptyCheck();
             dateFrom = datePickerFrom.SelectedDate.Value;
             RefreshOrderList();
         }
 
+        /// <summary>
+        /// Data wybrana w datePickerTo do zmiennej dateTo
+        /// </summary>
         private void datePickerTo_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
+            ListNotEmptyCheck();
             dateTo = datePickerTo.SelectedDate.Value;
             RefreshOrderList();
         }
@@ -428,7 +447,7 @@ namespace OrdersRegistration.WPF
         {
             if (_isPaidList.Count != 0)
             {
-                MessageBoxResult result = MessageBox.Show("Zmieniono wartość pola 'Zapłacono'.\nZapisać zmiany?", "NIE ZATWIERDZONO ZMIAN!", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                MessageBoxResult result = MessageBox.Show("Zmieniono wartość pola 'Zapłacono'.\nZapisać zmiany?", "Nie zatwierdzono zmian!", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (result == MessageBoxResult.Yes)
                 {
                     buttonIsPaid_Click(this, new RoutedEventArgs());

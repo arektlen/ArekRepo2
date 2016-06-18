@@ -8,6 +8,9 @@ namespace OrdersRegistration.WPF
     /// </summary>
     public partial class AboutApplication : MetroWindow
     {
+        /// <summary>
+        /// ctor
+        /// </summary>
         public AboutApplication()
         {
             InitializeComponent();

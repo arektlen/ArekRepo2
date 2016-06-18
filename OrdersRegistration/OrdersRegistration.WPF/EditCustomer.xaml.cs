@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using OrdersRegistration.DbRepository;
 using MahApps.Metro.Controls;
+using OrdersRegistration.Validation;
 
 namespace OrdersRegistration.WPF
 {
@@ -41,11 +42,15 @@ namespace OrdersRegistration.WPF
         /// </summary>
         private void buttonEditCustomer_Click(object sender, RoutedEventArgs e)
         {
-            if (_customerToEdit != null)
+            if (textBoxEditCustomerName.Text != "")
             {
                 _customerStorage.Update(_customerToEdit);
                 this.DialogResult = true;
-                MessageBox.Show("Zmieniono!");
+                MessageBox.Show("Dane zostały zaktualizowane!", "Informacja");
+            }
+            else
+            {
+                MessageBox.Show("Musisz podać nazwę Zleceniodawcy!", "Uwaga!");
             }
         }
 
@@ -58,17 +63,17 @@ namespace OrdersRegistration.WPF
 
             if (!orderStorage.Read().Any(o => o.Customer.ID == _customerToEdit.ID))
             {
-                MessageBoxResult result = MessageBox.Show("Czy na pewno chcesz usunąć zleceniodawcę: " + _customerToEdit.Name + " ?", "Uwaga!", MessageBoxButton.OKCancel);
+                MessageBoxResult result = MessageBox.Show("Czy na pewno chcesz usunąć zleceniodawcę: " + _customerToEdit.Name + " ?", "Uwaga!", MessageBoxButton.OKCancel, MessageBoxImage.Question);
                 if (result == MessageBoxResult.OK)
                 {
                     _customerStorage.Delete(_customerToEdit);
                     this.DialogResult = true;
-                    MessageBox.Show("Usunięto!");
+                    MessageBox.Show("Usunięto!", "Informacja");
                 }
             }
             else
             {
-                MessageBox.Show("Nie można usunąć zleceniodawcy, ponieważ ma on przypisane zlecenia!");
+                MessageBox.Show("Nie można usunąć zleceniodawcy, ponieważ ma on przypisane zlecenia!", "Uwaga!");
             }
         }
 
@@ -89,11 +94,19 @@ namespace OrdersRegistration.WPF
         }
 
         /// <summary>
-        /// Nowy numer telefonu edytowanego zlecniodawcy
+        /// Nowy numer telefonu edytowanego zleceniodawcy
         /// </summary>
-        private void textBoxEditCustomerPhone_TextChanged(object sender, TextChangedEventArgs e)
+        private void textBoxEditCustomerPhone_LostFocus(object sender, RoutedEventArgs e)
         {
-            _customerToEdit.PhoneNumber = textBoxEditCustomerPhone.Text;
+            if (Validators.IsDigitValidation(textBoxEditCustomerPhone.Text))
+            {
+                _customerToEdit.PhoneNumber = textBoxEditCustomerPhone.Text;
+            }
+            else
+            {
+                MessageBox.Show("Musisz wpisać CYFRY!", "Uwaga!");
+                textBoxEditCustomerPhone.Clear();
+            }
         }
     }
 }

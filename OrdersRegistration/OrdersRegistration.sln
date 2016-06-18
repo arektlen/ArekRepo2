@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrdersRegistration.DbReposi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrdersRegistration.Statistics", "OrdersRegistration.Statistics\OrdersRegistration.Statistics.csproj", "{E82254B1-A394-46B6-987D-E2C717A127B4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrdersRegistration.Validation", "OrdersRegistration.Validation\OrdersRegistration.Validation.csproj", "{6D263315-A88C-411D-8A90-706A3DBFEE53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{E82254B1-A394-46B6-987D-E2C717A127B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E82254B1-A394-46B6-987D-E2C717A127B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E82254B1-A394-46B6-987D-E2C717A127B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D263315-A88C-411D-8A90-706A3DBFEE53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D263315-A88C-411D-8A90-706A3DBFEE53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D263315-A88C-411D-8A90-706A3DBFEE53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D263315-A88C-411D-8A90-706A3DBFEE53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
