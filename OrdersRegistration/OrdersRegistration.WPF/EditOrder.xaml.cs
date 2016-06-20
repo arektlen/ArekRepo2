@@ -101,7 +101,7 @@ namespace OrdersRegistration.WPF
         {
             if (textBoxEditOrdername.Text != "" && _editOrder.Date != null && textBoxEditOrderPrice.Text != "" && _editOrder.Customer.ID != 0)
             {
-                _orderStorage.Create(_editOrder);
+                _orderStorage.Update(_editOrder);
                 this.DialogResult = true;
             }
             else
