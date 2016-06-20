@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:OrdersRegistration.WPF"
         xmlns:Model="clr-namespace:OrdersRegistration.Model;assembly=OrdersRegistration.Model" x:Class="OrdersRegistration.WPF.MainWindow"
         mc:Ignorable="d"
-        Title="Orders Registration" Height="521.5" MinHeight="450" MinWidth="760" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" Width="921.5" ResizeMode="CanResize" WindowStartupLocation="CenterScreen">
+        Title="Orders Registration" Height="521.5" MinHeight="450" MinWidth="760" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" Width="921.5" ResizeMode="CanResize" WindowStartupLocation="CenterScreen" Closing="MetroWindow_Closing">
     <Grid Margin="0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

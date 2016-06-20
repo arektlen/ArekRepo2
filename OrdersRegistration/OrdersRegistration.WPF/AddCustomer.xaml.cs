@@ -68,6 +68,8 @@ namespace OrdersRegistration.WPF
         /// </summary>
         private void textBoxAddCustomerPhone_LostFocus(object sender, RoutedEventArgs e)
         {
+
+
             if (Validators.IsDigitValidation(textBoxAddCustomerPhone.Text))
             {
                 newCustomer.PhoneNumber = textBoxAddCustomerPhone.Text;

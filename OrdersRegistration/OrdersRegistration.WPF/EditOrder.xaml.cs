@@ -115,14 +115,12 @@ namespace OrdersRegistration.WPF
         /// </summary>
         private void textBoxEditOrderPrice_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (Validators.IsDigitValidation(textBoxEditOrderPrice.Text))
+            
+            decimal price;
+            if (decimal.TryParse(textBoxEditOrderPrice.Text, out price))
             {
-                decimal price;
-                if (decimal.TryParse(textBoxEditOrderPrice.Text, out price))
-                {
-                    _editOrder.Price = price;
-                }
-            }
+                _editOrder.Price = price;
+            }  
             else
             {
                 MessageBox.Show("Musisz podać cyfry!", "Uwaga!");

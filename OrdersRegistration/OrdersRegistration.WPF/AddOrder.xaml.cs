@@ -81,15 +81,12 @@ namespace OrdersRegistration.WPF
         /// Kwota zlecenia
         /// </summary>
         private void textBoxOrderPrice_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (Validators.IsDigitValidation(textBoxOrderPrice.Text))
+        {    
+            decimal price;
+            if (decimal.TryParse(textBoxOrderPrice.Text, out price))
             {
-                decimal price;
-                if (decimal.TryParse(textBoxOrderPrice.Text, out price))
-                {
-                    newOrder.Price = price;
-                }
-            }
+                newOrder.Price = price;
+            }  
             else
             {
                 MessageBox.Show("Musisz podać cyfry!", "Uwaga!");

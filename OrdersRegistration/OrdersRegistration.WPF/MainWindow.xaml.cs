@@ -141,17 +141,17 @@ namespace OrdersRegistration.WPF
             }
             else
             {
-                MessageBoxResult result = MessageBox.Show("Ponieważ nie ma jeszcze zdefiniowanego żadnego ZLECENIODAWCY, dodaj go teraz !", "Uwaga!", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBoxResult result = MessageBox.Show("Ponieważ nie ma jeszcze zdefiniowanego żadnego ZLECENIODAWCY, dodaj go teraz !", "Uwaga!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
 
                 if (result == MessageBoxResult.OK)
                 {
                     MenuItemAddCustomer_Click(this, e);
-                   
-                    AddOrder addOrder = new AddOrder(_orderStorage, _customerStorage);
-                    addOrder.ShowDialog();
-                    ComboBoxItemsCount();
-                    RefreshOrderList();        
-                }       
+                    btnAddOrder_Click(this, e);
+                }
+                else
+                {
+                    return;
+                }     
             }           
         }
 
@@ -211,10 +211,13 @@ namespace OrdersRegistration.WPF
         private void MenuItemAddCustomer_Click(object sender, RoutedEventArgs e)
         {
             AddCustomer addCustomer = new AddCustomer(_customerStorage);
-            addCustomer.ShowDialog();
+            bool? result = addCustomer.ShowDialog();
 
-            comboBoxCustomerFilter.Items.Clear();
-            SetToComboBoxCustomerFilter();            
+            if (result.HasValue && result.Value)
+            {
+                comboBoxCustomerFilter.Items.Clear();
+                SetToComboBoxCustomerFilter();
+            }                    
         }
 
         /// <summary>
@@ -249,8 +252,6 @@ namespace OrdersRegistration.WPF
         /// </summary>
         private void MenuItemAppClose_Click(object sender, RoutedEventArgs e)
         {
-            ListNotEmptyCheck();
-
             Application.Current.Shutdown();
         }
 
@@ -456,8 +457,14 @@ namespace OrdersRegistration.WPF
                 {
                     _isPaidList.Clear();
                     RefreshOrderList();
+                    buttonIsPaid.IsEnabled = false;
                 }
             }
+        }
+
+        private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ListNotEmptyCheck();
         }
     }
 }
