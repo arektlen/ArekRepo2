@@ -86,8 +86,6 @@ C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo\OrdersRegistr
 C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.WPF\bin\Debug\OrdersRegistration.WPF.exe.config
 C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.WPF\obj\Debug\OrdersRegistration.WPF.exe
 C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.WPF\obj\Debug\OrdersRegistration.WPF.pdb
-C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.WPF\bin\Debug\Database1.mdf
-C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.WPF\bin\Debug\Database1_log.ldf
 C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.WPF\bin\Debug\OrdersRegistration.WPF.exe
 C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.WPF\bin\Debug\OrdersRegistration.WPF.pdb
 C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.WPF\bin\Debug\EntityFramework.dll
@@ -150,3 +148,7 @@ C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegist
 C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.WPF\bin\Debug\MahApps.Metro.xml
 C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.WPF\bin\Debug\OrdersRegistration.Validation.dll
 C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.WPF\bin\Debug\OrdersRegistration.Validation.pdb
+C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.WPF\bin\Debug\Database2.mdf
+C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.WPF\bin\Debug\Database2_log.ldf
+C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.WPF\obj\Debug\UserSettings.g.cs
+C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.WPF\obj\Debug\UserSettings.baml

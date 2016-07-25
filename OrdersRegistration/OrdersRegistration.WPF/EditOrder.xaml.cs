@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using OrdersRegistration.DbRepository;
 using MahApps.Metro.Controls;
 using OrdersRegistration.Validation;
+using System.Linq;
 
 namespace OrdersRegistration.WPF
 {

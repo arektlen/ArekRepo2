@@ -15,6 +15,8 @@ namespace OrdersRegistration.Model
         public string Comments { get; set; }
         public decimal Price { get; set; }
         public Customer Customer { get; set; }
+        public bool GridIsPaidColor { get; set; }
+        public bool GridIsPaidEnabled { get; set; }
         private bool _isPaid;
 
         public bool IsPaid

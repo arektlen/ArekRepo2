@@ -42,8 +42,6 @@ C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo\OrdersRegistr
 C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo\OrdersRegistration\OrdersRegistration.Statistics\obj\Debug\OrdersRegistration.Statistics.csprojResolveAssemblyReference.cache
 C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo\OrdersRegistration\OrdersRegistration.Statistics\obj\Debug\OrdersRegistration.Statistics.dll
 C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo\OrdersRegistration\OrdersRegistration.Statistics\obj\Debug\OrdersRegistration.Statistics.pdb
-C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.Statistics\bin\Debug\Database1.mdf
-C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.Statistics\bin\Debug\Database1_log.ldf
 C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.Statistics\bin\Debug\OrdersRegistration.Statistics.dll.config
 C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.Statistics\bin\Debug\OrdersRegistration.Statistics.dll
 C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.Statistics\bin\Debug\OrdersRegistration.Statistics.pdb
@@ -64,3 +62,5 @@ C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegist
 C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.Statistics\obj\Debug\OrdersRegistration.Statistics.csprojResolveAssemblyReference.cache
 C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.Statistics\obj\Debug\OrdersRegistration.Statistics.dll
 C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.Statistics\obj\Debug\OrdersRegistration.Statistics.pdb
+C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.Statistics\bin\Debug\Database2.mdf
+C:\Users\Aro\Documents\Visual Studio 2015\Projects\GitHub\ArekRepo2\OrdersRegistration\OrdersRegistration.Statistics\bin\Debug\Database2_log.ldf

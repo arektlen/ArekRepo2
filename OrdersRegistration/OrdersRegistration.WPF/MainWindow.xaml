@@ -21,22 +21,37 @@
                     Handler="DataGridCell_PreviewMouseLeftButtonDown"/>
                 </Style>
             </DataGrid.Resources>
+
             <DataGrid.RowStyle>
                 <Style TargetType="DataGridRow">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding IsPaid}" Value="true">
-                            <Setter Property="Background" Value="#FFA9DE8A"></Setter>
+                            <Setter Property="Background" Value="#FF7FB461"></Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding GridIsPaidColor}" Value="true">
+                            <Setter Property="Background" Value="#FFD66464"></Setter>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </DataGrid.RowStyle>
+
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nr"  Binding="{Binding ID}" IsReadOnly="True" TextElement.FontSize="12"/>
                 <DataGridTextColumn Header="Data"  Binding="{Binding Date, StringFormat={}{0:dd.MM.yyyy}}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Zleceniodawca"  Binding="{Binding Customer.Name}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Zlecenie"  Binding="{Binding Name}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Kwota"  Binding="{Binding Price, StringFormat={}{0:#.00}}" IsReadOnly="True"/>
-                <DataGridCheckBoxColumn Header="Zapłacono"  Binding="{Binding IsPaid, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridCheckBoxColumn Header="Zapłacono"  Binding="{Binding IsPaid, UpdateSourceTrigger=PropertyChanged}">
+                <DataGridCheckBoxColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding GridIsPaidEnabled}" Value="true">
+                                    <Setter Property="IsEnabled" Value="False"></Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridCheckBoxColumn.CellStyle>
+                </DataGridCheckBoxColumn>
                 <DataGridTextColumn Header="Uwagi" Width="*" Binding="{Binding Comments}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
@@ -49,6 +64,8 @@
                 <MenuItem Header="Dodaj zleceniodawcę" Click="MenuItemAddCustomer_Click"/>
                 <MenuItem Header="Edytuj/Usuń zleceniodawcę" Click="MenuItem_EditCustomer"/>
                 <Separator/>
+                <MenuItem Header="Ustawienia" Click="MenuItem_Settings"/>
+                <Separator/>
                 <MenuItem Header="O autorze" Click="MenuItemAbout_Click"/>
                 <MenuItem Header="Zamknij" Click="MenuItemAppClose_Click" InputGestureText="Alt + F4"/>
             </MenuItem>
@@ -58,7 +75,7 @@
         </Menu>
         <Button x:Name="buttonIsPaid" Content="Akceptuj zapłacone" VerticalContentAlignment="Center" IsEnabled="False" Margin="0,0,15,111" Click="buttonIsPaid_Click" Height="35" Width="140" VerticalAlignment="Bottom" HorizontalAlignment="Right" BorderBrush="OrangeRed" BorderThickness="1" TabIndex="1"/>
         <ComboBox x:Name="comboBoxCustomerFilter" ItemsSource="{Binding Customer}" Text="Wybierz zleceniodawcę" DisplayMemberPath="Name" IsEditable="True" IsReadOnly="True" VerticalContentAlignment="Center" Margin="0,0,15,422" SelectionChanged="comboBoxCustomerFilter_SelectionChanged" Height="22" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="177" BorderBrush="OrangeRed" BorderThickness="1" TabIndex="4"/>
-        <ComboBox x:Name="comboBoxOrdersOnPage" Text="Liczba zleceń" Margin="0,0,15,353" IsEditable="True" IsReadOnly="True" VerticalContentAlignment="Center" SelectionChanged="comboBoxOrdersOnPage_SelectionChanged" Height="22" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="177" BorderBrush="OrangeRed" BorderThickness="1" TabIndex="5"/>
+        <ComboBox x:Name="comboBoxOrdersOnPage" ItemsSource="{Binding OrdersCount}" DisplayMemberPath="Text" Text="Liczba zleceń" Margin="0,0,15,353" IsEditable="True" IsReadOnly="True" VerticalContentAlignment="Center" SelectionChanged="comboBoxOrdersOnPage_SelectionChanged" Height="22" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="177" BorderBrush="OrangeRed" BorderThickness="1" TabIndex="5"/>
         <DatePicker x:Name="datePickerFrom" Margin="0,0,15,266" Height="24" VerticalAlignment="Bottom" SelectedDateChanged="datePickerFrom_SelectedDateChanged" HorizontalAlignment="Right" Width="119" BorderBrush="OrangeRed" BorderThickness="1" TabIndex="6"/>
         <DatePicker x:Name="datePickerTo" Margin="0,0,15,227" SelectedDateChanged="datePickerTo_SelectedDateChanged" Height="24" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="119" BorderBrush="OrangeRed" BorderThickness="1" TabIndex="7"/>
     </Grid>

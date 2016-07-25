@@ -7,6 +7,8 @@ using System.Windows.Media;
 using OrdersRegistration.DbRepository;
 using System.Collections.Generic;
 using MahApps.Metro.Controls;
+using System.IO;
+using OrdersRegistration.WPF.Infrastructure;
 
 namespace OrdersRegistration.WPF
 {
@@ -24,6 +26,9 @@ namespace OrdersRegistration.WPF
         private DateTime dateTo;
         private Model.Customer selectedCustomer = null;
         private Model.Order orderIsPaid = new Model.Order();
+        private IEnumerable<Model.Order> _orders;
+        private string _settingsPath = "Settings.xml";
+        private Settings settings = new Settings();
 
         /// <summary>
         /// Ctor
@@ -36,7 +41,9 @@ namespace OrdersRegistration.WPF
             storageTest();   
             SetToComboBoxCustomerFilter();
             ComboBoxOrdersOnPage();
-            InitializeValues();          
+            InitializeValues();
+            ComboBoxItemsCount();
+            
         }
 
         /// <summary>
@@ -66,16 +73,19 @@ namespace OrdersRegistration.WPF
         /// </summary>
         private void InitializeValues()
         {
-            ordersCount = 20; 
-
-            DateTime today = DateTime.Today;
-            dateFrom = today.AddMonths(-1);
-            dateTo = today.AddMonths(1);
-
-            datePickerFrom.SelectedDate = dateFrom;
-            datePickerTo.SelectedDate = dateTo;
-
-            comboBoxOrdersOnPage.SelectedValue = "Wszystkie zlecenia"; //wyzwala zdarzenie comboBoxOrdersOnPage_SelectionChanged
+            if (File.Exists(_settingsPath))
+            {
+                settings = XMLSerialization.Deserialization(_settingsPath);
+            }
+            else
+            {
+                settings.DefaultSettings();
+            }
+            
+            ordersCount = settings.OrdersCount.Count;
+            datePickerFrom.SelectedDate = settings.DateFrom;
+            datePickerTo.SelectedDate = settings.DateTo;
+            comboBoxOrdersOnPage.Text = settings.OrdersCount.Text;
         }
 
         /// <summary>
@@ -90,10 +100,10 @@ namespace OrdersRegistration.WPF
             Model.Customer customer3 = new Model.Customer { ID = 3, Name = "Zenek", Mail = "zenon@o2.pl", PhoneNumber = "602345966" };
             _customerStorage.Create(customer3);
 
-            Model.Order order1 = new Model.Order { Name = "Nagranie lektorskie", Comments = "Zrealizować jak najszybciej!", Price = 150m, IsPaid = true, Customer = customer1, Date = new DateTime(2016, 6, 12) };
-            _orderStorage.Create(order1);
-            Model.Order order2 = new Model.Order { Name = "Realizacja usług masteringowych", Comments = "Posłużyć się kompresorem firmy Waves", Price = 1200m, IsPaid = false, Customer = customer2, Date = DateTime.Now.Date };
-            _orderStorage.Create(order2);
+            //Model.Order order1 = new Model.Order { Name = "Nagranie lektorskie", Comments = "Zrealizować jak najszybciej!", Price = 150m, IsPaid = true, Customer = customer1, Date = new DateTime(2016, 6, 12) };
+            //_orderStorage.Create(order1);
+            //Model.Order order2 = new Model.Order { Name = "Realizacja usług masteringowych", Comments = "Posłużyć się kompresorem firmy Waves", Price = 1200m, IsPaid = false, Customer = customer2, Date = DateTime.Now.Date };
+            //_orderStorage.Create(order2);
         }
 
         /// <summary>
@@ -103,21 +113,27 @@ namespace OrdersRegistration.WPF
         {
             if (selectedCustomer == null)
             {
-                var items = orderListFilter.GetOrderListDateFromTo(dateFrom, dateTo, ordersCount);
-                foreach (var i in items)
+                _orders = orderListFilter.GetOrderListDateFromTo(dateFrom, dateTo, ordersCount);
+                foreach (var i in _orders)
                 {
                     i.IsPaidEvent += Order_PropertyChanged;
                 }
-                dataGrid.ItemsSource = items;
+                
+                GridIsPaidDisable();
+                dataGrid.ItemsSource = _orders;
+                OrdersNonPaidRowStyle();
             }
             else
             {
-                var items = orderListFilter.GetOrderListDateFromTo(dateFrom, dateTo, ordersCount, selectedCustomer);
-                foreach (var i in items)
+                _orders = orderListFilter.GetOrderListDateFromTo(dateFrom, dateTo, ordersCount, selectedCustomer);
+                foreach (var i in _orders)
                 {
                     i.IsPaidEvent += Order_PropertyChanged;
                 }
-                dataGrid.ItemsSource = items;
+                
+                GridIsPaidDisable();
+                dataGrid.ItemsSource = _orders;
+                OrdersNonPaidRowStyle();
             }
         }
 
@@ -170,6 +186,8 @@ namespace OrdersRegistration.WPF
                 bool? result = editOrder.ShowDialog();
                 if (result.HasValue && result.Value)
                 {
+                    _isPaidList.Clear();
+                    buttonIsPaid.IsEnabled = false;
                     RefreshOrderList();
                 }
             }
@@ -229,10 +247,10 @@ namespace OrdersRegistration.WPF
 
             bool? result = editCustomer.ShowDialog();
             if (result.HasValue && result.Value)
-            {
-                RefreshOrderList();
+            { 
                 comboBoxCustomerFilter.Items.Clear();
                 SetToComboBoxCustomerFilter();
+                RefreshOrderList();
             }
         }
 
@@ -293,11 +311,12 @@ namespace OrdersRegistration.WPF
         /// </summary>
         private void ComboBoxOrdersOnPage()
         {
-            comboBoxOrdersOnPage.Items.Add("Wszystkie zlecenia");
-            comboBoxOrdersOnPage.Items.Add("10");
-            comboBoxOrdersOnPage.Items.Add("20");
-            comboBoxOrdersOnPage.Items.Add("30");
-            comboBoxOrdersOnPage.Items.Add("40");
+            comboBoxOrdersOnPage.Items.Add(settings.ordersAll);
+            comboBoxOrdersOnPage.Items.Add(settings.orders10);
+            comboBoxOrdersOnPage.Items.Add(settings.orders20);
+            comboBoxOrdersOnPage.Items.Add(settings.orders30);
+            comboBoxOrdersOnPage.Items.Add(settings.orders40);
+            comboBoxOrdersOnPage.Text = settings.ordersAll.Text;
         }
 
         /// <summary>
@@ -307,31 +326,18 @@ namespace OrdersRegistration.WPF
         {
             ListNotEmptyCheck();
 
-            switch (comboBoxOrdersOnPage.SelectedItem.ToString())
+            OrdersCount count = (OrdersCount)comboBoxOrdersOnPage.SelectedItem;
+
+            if (count.Count == 0)
             {
-                case ("Wszystkie zlecenia"):
-                    ordersCount = _orderStorage.Read().Count();
-                    RefreshOrderList();
-                    break;
-                case ("10"):
-                    ordersCount = 1;
-                    RefreshOrderList();
-                    break;
-                case ("20"):
-                    ordersCount = 2;
-                    RefreshOrderList();
-                    break;
-                case ("30"):
-                    ordersCount = 3;
-                    RefreshOrderList();
-                    break;
-                case ("40"):
-                    ordersCount = 4;
-                    RefreshOrderList();
-                    break;
-                default:
-                    break;
+                ordersCount = _orderStorage.Read().Count();
             }
+            else
+            {
+                ordersCount = count.Count;
+            }
+
+            RefreshOrderList();
         }
 
         /// <summary>
@@ -385,7 +391,7 @@ namespace OrdersRegistration.WPF
         {
             foreach (var i in _isPaidList)
             {
-                _orderStorage.Update(i);           
+                _orderStorage.Update(i);
             }
 
             _isPaidList.Clear();
@@ -420,7 +426,6 @@ namespace OrdersRegistration.WPF
                         row.IsSelected = true;
                     }
                 }
-
             }
         }
         static T FindVisualParent<T>(UIElement element) where T : UIElement
@@ -465,6 +470,55 @@ namespace OrdersRegistration.WPF
         private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             ListNotEmptyCheck();
+            Application.Current.Shutdown();
+        }
+
+        private void MenuItem_Settings(object sender, RoutedEventArgs e)
+        {
+            ListNotEmptyCheck();
+
+            UserSettings userSettings = new UserSettings();
+
+            bool? result = userSettings.ShowDialog();
+            if (result.HasValue && result.Value)
+            {
+                XMLSerialization.Serialization(userSettings.settings, _settingsPath);
+
+                ordersCount = userSettings.settings.OrdersCount.Count;
+                datePickerFrom.SelectedDate = userSettings.settings.DateFrom;
+                datePickerTo.SelectedDate = userSettings.settings.DateTo;
+                comboBoxOrdersOnPage.Text = userSettings.settings.OrdersCount.Text;
+
+                ComboBoxItemsCount();
+                RefreshOrderList();
+            }
+        }
+        private void OrdersNonPaidRowStyle()
+        {
+            foreach (var i in _customerStorage.Read())
+            {
+                var result = _orderStorage.Read().Where(o => o.Customer.ID == i.ID && o.IsPaid == false).Sum(o => o.Price);
+                if (result >= 200)
+                {
+                    var selectedItems = _orders.Where(o => o.Customer.ID == i.ID && o.IsPaid == false).ToList();
+
+                    foreach (var j in selectedItems)
+                    {
+                        j.GridIsPaidColor = true;
+                    }
+                }
+            }
+        }
+
+        private void GridIsPaidDisable()
+        {
+            foreach (var i in _orders)
+            {
+                if (i.IsPaid == true)
+                {
+                    i.GridIsPaidEnabled = true;
+                }
+            }
         }
     }
 }
