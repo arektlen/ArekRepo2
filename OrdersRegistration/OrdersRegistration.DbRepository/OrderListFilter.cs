@@ -12,7 +12,7 @@ namespace OrdersRegistration.DbRepository
 
             using (Database1Entities context = new Database1Entities())
             {
-                var dbList = context.Orders.Where(o => o.Date >= dateFrom && o.Date <= dateTo).OrderByDescending(o => o.Date).Take(ordersCount).ToList();
+                var dbList = context.Orders.Where(o => o.Date >= dateFrom && o.Date <= dateTo).OrderByDescending(o => o.Date).ThenByDescending(o => o.Id).Take(ordersCount);
 
                 Mapper map = new Mapper();
                 foreach (var i in dbList)
@@ -30,7 +30,7 @@ namespace OrdersRegistration.DbRepository
 
             using (Database1Entities context = new Database1Entities())
             {
-                var dbList = context.Orders.Where(o => o.Date >= dateFrom && o.Date <= dateTo && o.IdCustomer == customer.ID).OrderByDescending(o => o.Date).Take(ordersCount).ToList();
+                var dbList = context.Orders.Where(o => o.Date >= dateFrom && o.Date <= dateTo && o.IdCustomer == customer.ID).OrderByDescending(o => o.Date).ThenByDescending(o => o.Id).Take(ordersCount);
 
                 Mapper map = new Mapper();
                 foreach (var i in dbList)

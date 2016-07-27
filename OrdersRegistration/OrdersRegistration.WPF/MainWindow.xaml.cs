@@ -83,8 +83,8 @@ namespace OrdersRegistration.WPF
             }
             
             ordersCount = settings.OrdersCount.Count;
-            datePickerFrom.SelectedDate = settings.DateFrom;
-            datePickerTo.SelectedDate = settings.DateTo;
+            datePickerFrom.SelectedDate = DateTime.Today.AddMonths(settings.DateFrom);
+            datePickerTo.SelectedDate = DateTime.Today.AddMonths(settings.DateTo);
             comboBoxOrdersOnPage.Text = settings.OrdersCount.Text;
         }
 
@@ -93,12 +93,12 @@ namespace OrdersRegistration.WPF
         /// </summary>
         public void storageTest()
         {
-            Model.Customer customer1 = new Model.Customer { ID = 1, Name = "Arek", Mail = "arek@wp.pl", PhoneNumber = "501234966" };
-            _customerStorage.Create(customer1);
-            Model.Customer customer2 = new Model.Customer { ID = 2, Name = "Piotrek", Mail = "piotr@gmail.com", PhoneNumber = "542883463" };
-            _customerStorage.Create(customer2);
-            Model.Customer customer3 = new Model.Customer { ID = 3, Name = "Zenek", Mail = "zenon@o2.pl", PhoneNumber = "602345966" };
-            _customerStorage.Create(customer3);
+            //Model.Customer customer1 = new Model.Customer { ID = 1, Name = "Arek", Mail = "arek@wp.pl", PhoneNumber = "501234966" };
+            //_customerStorage.Create(customer1);
+            //Model.Customer customer2 = new Model.Customer { ID = 2, Name = "Piotrek", Mail = "piotr@gmail.com", PhoneNumber = "542883463" };
+            //_customerStorage.Create(customer2);
+            //Model.Customer customer3 = new Model.Customer { ID = 3, Name = "Zenek", Mail = "zenon@o2.pl", PhoneNumber = "602345966" };
+            //_customerStorage.Create(customer3);
 
             //Model.Order order1 = new Model.Order { Name = "Nagranie lektorskie", Comments = "Zrealizować jak najszybciej!", Price = 150m, IsPaid = true, Customer = customer1, Date = new DateTime(2016, 6, 12) };
             //_orderStorage.Create(order1);
@@ -399,9 +399,9 @@ namespace OrdersRegistration.WPF
             RefreshOrderList();
         }
 
-        /// <summary>
-        /// Metody odpowiedzialne za "pojedynczy click" w dataGrid
-        /// </summary>
+        ///// <summary>
+        ///// Metody odpowiedzialne za "pojedynczy click" w dataGrid
+        ///// </summary>
         private void DataGridCell_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             DataGridCell cell = (DataGridCell)sender;
@@ -473,6 +473,9 @@ namespace OrdersRegistration.WPF
             Application.Current.Shutdown();
         }
 
+        /// <summary>
+        /// Okno 'Ustawienia użytkownika' oraz serializacja ustawień i zapis do pliku
+        /// </summary>
         private void MenuItem_Settings(object sender, RoutedEventArgs e)
         {
             ListNotEmptyCheck();
@@ -485,14 +488,18 @@ namespace OrdersRegistration.WPF
                 XMLSerialization.Serialization(userSettings.settings, _settingsPath);
 
                 ordersCount = userSettings.settings.OrdersCount.Count;
-                datePickerFrom.SelectedDate = userSettings.settings.DateFrom;
-                datePickerTo.SelectedDate = userSettings.settings.DateTo;
+                datePickerFrom.SelectedDate = DateTime.Today.AddMonths(userSettings.settings.DateFrom);
+                datePickerTo.SelectedDate = DateTime.Today.AddMonths(userSettings.settings.DateTo);
                 comboBoxOrdersOnPage.Text = userSettings.settings.OrdersCount.Text;
 
                 ComboBoxItemsCount();
                 RefreshOrderList();
             }
         }
+
+        /// <summary>
+        /// Metoda oznaczjąca kolorem czerwonym wszystkie nieopłacone zamówienia jednego użytkownika, których łączna suma przekracza 200 zł
+        /// </summary>
         private void OrdersNonPaidRowStyle()
         {
             foreach (var i in _customerStorage.Read())
@@ -510,6 +517,9 @@ namespace OrdersRegistration.WPF
             }
         }
 
+        /// <summary>
+        /// Metoda ustawiająca właściwość 'IsEnabled' DataGridCheckBoxColumn na 'false', gdy opłacono zlecenie
+        /// </summary>
         private void GridIsPaidDisable()
         {
             foreach (var i in _orders)

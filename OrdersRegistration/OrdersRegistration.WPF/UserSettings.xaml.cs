@@ -25,54 +25,86 @@ namespace OrdersRegistration.WPF
     {
         public Settings settings = new Settings();
 
+        /// <summary>
+        /// ctor
+        /// </summary>
         public UserSettings()
         {
-            settings.DefaultSettings(); // zmienić - formatka powinna pobierać wartości z MainWindow (chyba)
+            settings.DefaultSettings();
             InitializeComponent();
-            ComboBoxOrdersOnPage();
-            ControlsSettings();   
+            ComboBoxOrdersOnPageSet();
+            ComboBoxDateFromSet();
+            ComboBoxDateToSet();   
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Zapisywanie ustawień użytkownika (button)
+        /// </summary>
+        private void buttonSave_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = true;
         }
 
+        /// <summary>
+        /// Ustawianie liczby zleceń na stronie
+        /// </summary>
         private void comboBoxOrdersOnPage_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            OrdersCount ordersCount = (OrdersCount)comboBoxOrdersOnPage.SelectedItem;
-            settings.OrdersCount = ordersCount;
+            settings.OrdersCount = (OrdersCount)comboBoxOrdersOnPage.SelectedItem;
         }
 
-        private void datePickerDateFrom_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        /// <summary>
+        /// Ustawianie z ilu miesięcy wstecz wyświetlać zlecenia
+        /// </summary>
+        private void comboBoxDateFrom_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            settings.DateFrom = datePickerDateFrom.SelectedDate.Value;         
+            settings.DateFrom = (int)comboBoxDateFrom.SelectedItem;
         }
 
-        private void datePickerDateTo_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        /// <summary>
+        /// Ustawianie ile miesięcy w przód wyświetlać zlecenia
+        /// </summary>
+        private void comboBoxDateTo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            settings.DateTo = datePickerDateTo.SelectedDate.Value;
+            settings.DateTo = (int)comboBoxDateTo.SelectedItem;
         }
 
-        private void ComboBoxOrdersOnPage()
+        /// <summary>
+        /// Dodawanie items do comboBox
+        /// </summary>
+        private void ComboBoxOrdersOnPageSet()
         {
-            Settings settings = new Settings();
-
             comboBoxOrdersOnPage.Items.Add(settings.ordersAll);
             comboBoxOrdersOnPage.Items.Add(settings.orders10);
             comboBoxOrdersOnPage.Items.Add(settings.orders20);
             comboBoxOrdersOnPage.Items.Add(settings.orders30);
             comboBoxOrdersOnPage.Items.Add(settings.orders40);
+            comboBoxOrdersOnPage.Text = settings.OrdersCount.Text;
         }
 
         /// <summary>
-        /// Ustawienie domyślnych wartości w kontrolkach
+        /// Dodawanie items do comboBox
         /// </summary>
-        private void ControlsSettings()
+        private void ComboBoxDateFromSet() 
         {
-            datePickerDateTo.SelectedDate = settings.DateTo;
-            datePickerDateFrom.SelectedDate = settings.DateFrom;
-            comboBoxOrdersOnPage.Text = settings.OrdersCount.Text;
+            comboBoxDateFrom.Items.Add(-1);
+            comboBoxDateFrom.Items.Add(-2);
+            comboBoxDateFrom.Items.Add(-3);
+            comboBoxDateFrom.Items.Add(-6);
+            comboBoxDateFrom.Items.Add(-12);
+        }
+
+        /// <summary>
+        /// Dodawanie items do comboBox
+        /// </summary>
+        private void ComboBoxDateToSet()
+        {
+            comboBoxDateTo.Items.Add(0);
+            comboBoxDateTo.Items.Add(1);
+            comboBoxDateTo.Items.Add(2);
+            comboBoxDateTo.Items.Add(3);
+            comboBoxDateTo.Items.Add(6);
+            comboBoxDateTo.Items.Add(12);
         }
     }
 }

@@ -11,6 +11,9 @@ namespace OrdersRegistration.WPF.Infrastructure
 {
     public class XMLSerialization
     {
+        /// <summary>
+        /// Serializacja obiektów 'Settings'
+        /// </summary>
         public static void Serialization(Settings settings, string path)
         {
             XmlSerializer oSerializer = new XmlSerializer(typeof(Settings));
@@ -19,6 +22,9 @@ namespace OrdersRegistration.WPF.Infrastructure
             sw.Close();
         }
 
+        /// <summary>
+        /// Deserializacja obiektów 'Settings'
+        /// </summary>
         public static Settings Deserialization(string path)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(Settings));

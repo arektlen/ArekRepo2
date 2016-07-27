@@ -5,25 +5,25 @@
     <Text>Wyświetl wszystkie</Text>
   </ordersAll>
   <orders10>
-    <Count>1</Count>
+    <Count>10</Count>
     <Text>10</Text>
   </orders10>
   <orders20>
-    <Count>2</Count>
+    <Count>20</Count>
     <Text>20</Text>
   </orders20>
   <orders30>
-    <Count>3</Count>
+    <Count>30</Count>
     <Text>30</Text>
   </orders30>
   <orders40>
-    <Count>4</Count>
+    <Count>40</Count>
     <Text>40</Text>
   </orders40>
-  <DateFrom>2016-06-25T00:00:00+02:00</DateFrom>
-  <DateTo>2016-08-25T00:00:00+02:00</DateTo>
+  <DateFrom>-12</DateFrom>
+  <DateTo>12</DateTo>
   <OrdersCount>
-    <Count>2</Count>
+    <Count>20</Count>
     <Text>20</Text>
   </OrdersCount>
 </Settings>

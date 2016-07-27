@@ -11,7 +11,7 @@ namespace OrdersRegistration.Validation
     {
         public static bool MailValidation(string text)
         {
-            Regex regex = new Regex(@"^([a-z 0-9 \.\-])*@(([a-z 0-9])+)((\.[a-z]{2,})*)((\.[a-z]{2,3})+)$");
+            Regex regex = new Regex(@"^([a-zA-Z 0-9 \.\-])*@(([a-zA-Z 0-9])+)((\.[a-zA-Z]{2,})*)((\.[a-zA-Z]{2,3})+)$");
 
             return regex.IsMatch(text) ? true : false;
         }
